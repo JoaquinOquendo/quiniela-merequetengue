@@ -436,9 +436,9 @@ tr:nth-child(1) .pt{color:#FFD700;}tr:nth-child(2) .pt{color:#aaa;}tr:nth-child(
     <div class="premios-editorial" id="premiosGrid"></div>
   </div>
 
-  <!-- 04 HOY -->
+  <!-- 04 JUEGOS -->
   <div class="section">
-    <div class="sec-header"><div class="sec-num">04 ——</div><div class="sec-title">Hoy</div><div class="sec-sub">Partidos<br>del Día</div></div>
+    <div class="sec-header"><div class="sec-num">04 ——</div><div class="sec-title">Juegos</div><div class="sec-sub">Próximos<br>Partidos</div></div>
     <div class="partidos-editorial" id="partidosList"></div>
   </div>
 
@@ -524,18 +524,26 @@ const DATA={
     {icon:"◉", cat:"Mejor Arquero",player_picks:{Joaquin:"Courtois",Christian:"Courtois"},votos:[{n:"Courtois",c:2}]},
     {icon:"◈", cat:"Mejor Novato", player_picks:{Joaquin:"Endrick",Christian:"Yamal"},   votos:[{n:"Endrick",c:1},{n:"Yamal",c:1}]},
   ],
-  // Partidos del 11 de junio con pronósticos reales de Joaquin y Christian
+  // Partidos con fecha y hora en hora de México (CDMX = ET-1)
   partidos:[
-    {grupo:"Grupo A",hora:"19:00 CT",local:"México",visitante:"Sudáfrica",resultado:null,
+    {grupo:"Grupo A",hora:"Jun 11 · 14:00 CDMX",local:"México",visitante:"Sudáfrica",resultado:null,
      pronosticos:[
        {nombre:"Joaquin",local:2,visitante:0},
        {nombre:"Christian",local:2,visitante:1},
      ]},
-    {grupo:"Grupo A",hora:"22:00 CT",local:"México",visitante:"Corea del Sur",resultado:null,
+    {grupo:"Grupo A",hora:"Jun 11 · 21:00 CDMX",local:"Corea del Sur",visitante:"Chequia",resultado:null,
+     pronosticos:[]},
+    {grupo:"Grupo A",hora:"Jun 18 · 11:00 CDMX",local:"Chequia",visitante:"Sudáfrica",resultado:null,
+     pronosticos:[]},
+    {grupo:"Grupo A",hora:"Jun 18 · 20:00 CDMX",local:"México",visitante:"Corea del Sur",resultado:null,
      pronosticos:[
        {nombre:"Joaquin",local:2,visitante:1},
        {nombre:"Christian",local:1,visitante:0},
      ]},
+    {grupo:"Grupo A",hora:"Jun 24 · 20:00 CDMX",local:"Chequia",visitante:"México",resultado:null,
+     pronosticos:[]},
+    {grupo:"Grupo A",hora:"Jun 24 · 20:00 CDMX",local:"Sudáfrica",visitante:"Corea del Sur",resultado:null,
+     pronosticos:[]},
   ],
   // Historial vacío — el torneo empieza el 11 de junio, se llena automáticamente
   historial:[],
@@ -1071,34 +1079,24 @@ function parseClasificacion(csv){
 function parseResultados(csv){
   const rows=parseCSV(csv);
   const grpIdx=rows.findIndex(r=>r.some(c=>c.includes('Grp')||c.includes('Local')));
-  if(grpIdx<0)return{partidos:[],lastUpdate:'—'};
+  if(grpIdx<0)return{resultados:{},lastUpdate:'—'};
 
   const todayStr=new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
-  const allPartidos=[];
+  const resultados={};
 
   for(let i=grpIdx+1;i<rows.length;i++){
     const r=rows[i];
     const local=(r[1]||'').trim();
     const visita=(r[4]||'').trim();
     if(!local||!visita)continue;
-    const grupo=(r[0]||'').trim();
     const golesL=(r[2]||'').trim();
     const golesV=(r[3]||'').trim();
     const jugado=golesL!==''&&golesV!==''&&!isNaN(parseInt(golesL));
-    // Skip section header rows (they have emoji in col 0)
-    if(grupo.includes('🏅')||grupo.includes('🏆')||grupo.includes('🎖'))continue;
-    const pronosticos=DATA.partidos.find(p=>p.local===local&&p.visitante===visita)?.pronosticos||[];
-    allPartidos.push({
-      grupo:`Grupo ${grupo}`,hora:'—',local,visitante:visita,
-      resultado:jugado?[parseInt(golesL),parseInt(golesV)]:null,
-      pronosticos,
-    });
+    if(jugado){
+      resultados[`${local}|${visita}`]=[parseInt(golesL),parseInt(golesV)];
+    }
   }
-
-  // Show: last 2 played + next 4 pending (not all 72)
-  const played =allPartidos.filter(p=>p.resultado).slice(-2);
-  const pending=allPartidos.filter(p=>!p.resultado).slice(0,4);
-  return{partidos:[...played,...pending],lastUpdate:todayStr};
+  return{resultados,lastUpdate:todayStr};
 }
 
 async function loadLiveData(){
@@ -1109,27 +1107,22 @@ async function loadLiveData(){
       fetch(CSV_RESULTADOS+'&t='+Date.now()).then(r=>r.text()),
     ]);
 
-    // Parse clasificacion — only update if real player names come through
+    // Parse clasificacion — merge with static data to preserve pos_picks etc.
     const livePlayers=parseClasificacion(csvClasif);
     if(livePlayers&&livePlayers.length){
-      // Merge: preserve static pos_picks and camp_pick for known players
       DATA.players=livePlayers.map(lp=>{
         const existing=DATA.players.find(p=>p.name===lp.name)||{};
         return{...existing,...lp};
       });
     }
 
-    // Parse resultados — merge played results into static partidos list
+    // Parse resultados — only updates scores for played games
+    // Static DATA.partidos keeps its order, dates, and pronosticos
     const liveRes=parseResultados(csvRes);
-    // Update any played results in static DATA.partidos
-    liveRes.partidos.forEach(lp=>{
-      if(!lp.resultado)return;
-      const existing=DATA.partidos.find(p=>p.local===lp.local&&p.visitante===lp.visitante);
-      if(existing) existing.resultado=lp.resultado;
+    DATA.partidos.forEach(p=>{
+      const key=`${p.local}|${p.visitante}`;
+      if(liveRes.resultados[key]) p.resultado=liveRes.resultados[key];
     });
-    // Replace DATA.partidos display with live version (next 4 + last 2)
-    if(liveRes.partidos.length) DATA.partidos=liveRes.partidos;
-
     DATA.lastUpdate=liveRes.lastUpdate;
 
   }catch(err){
