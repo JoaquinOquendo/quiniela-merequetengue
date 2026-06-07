@@ -512,56 +512,42 @@ function ini(n){return n.trim().charAt(0).toUpperCase();}
 const COLORS=["#006847","#CE1126","#FFD700","#3CAC3B","#FF6B35","#8B5CF6","#14B8A6","#EC4899","#F97316","#64748B"];
 const DATA={
   lastUpdate:"11 Jun 2026 · 00:00",
+  // Solo participantes reales por ahora — se agregan conforme se registren
   players:[
-    {name:"Yous",     camp_pick:"Brasil",  pos_picks:{p1:"Brasil",   p2:"Francia",   sf1:"Argentina",sf2:"México"},  grp:40,oct:14,qf:10,sf:8, fin:12,camp:20,prem:10,total:114},
-    {name:"Pablo",    camp_pick:"Francia", pos_picks:{p1:"Francia",  p2:"Brasil",    sf1:"España",   sf2:"Argentina"},grp:36,oct:12,qf:15,sf:16,fin:0, camp:0, prem:20,total:99},
-    {name:"Joaquin",  camp_pick:"México",  pos_picks:{p1:"México",   p2:"Argentina", sf1:"Brasil",   sf2:"Francia"},  grp:33,oct:12,qf:10,sf:8, fin:12,camp:0, prem:10,total:85},
-    {name:"Christian",camp_pick:"Argentina",pos_picks:{p1:"Argentina",p2:"México",   sf1:"Francia",  sf2:"Brasil"},   grp:28,oct:8,qf:10,sf:16,fin:0,camp:0, prem:10,total:72},
-    {name:"Matsui",   camp_pick:"Japón",   pos_picks:{p1:"Japón",    p2:"España",    sf1:"Francia",  sf2:"Brasil"},   grp:26,oct:10,qf:5, sf:0, fin:0, camp:0, prem:20,total:61},
-    {name:"Agus",     camp_pick:"Argentina",pos_picks:{p1:"Argentina",p2:"Brasil",   sf1:"México",   sf2:"España"},   grp:22,oct:8,qf:5,sf:0, fin:0, camp:0, prem:10,total:45},
-    {name:"Brandon",  camp_pick:"México",  pos_picks:{p1:"México",   p2:"Brasil",    sf1:"Argentina",sf2:"España"},   grp:20,oct:4, qf:0, sf:0, fin:0, camp:0, prem:10,total:34},
-    {name:"Vito",     camp_pick:"Brasil",  pos_picks:{p1:"Brasil",   p2:"Argentina", sf1:"México",   sf2:"Francia"},  grp:16,oct:4, qf:5, sf:0, fin:0, camp:0, prem:0, total:25},
+    {name:"Joaquin",  camp_pick:"México",   pos_picks:{p1:"México",   p2:"Argentina", sf1:"Brasil",  sf2:"Francia"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
+    {name:"Christian",camp_pick:"Argentina",pos_picks:{p1:"Argentina",p2:"México",    sf1:"Francia", sf2:"Brasil"},  grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
   ],
+  // Premios: solo votos reales de Joaquin y Christian — actualizar cuando se registren los demás
   premios:[
-    {icon:"⚽",cat:"Bota de Oro",  player_picks:{Yous:"Haaland",Pablo:"Mbappé",Joaquin:"Haaland",Christian:"Lautaro",Matsui:"Haaland",Agus:"Mbappé",Brandon:"Haaland",Vito:"Vinicius Jr."},votos:[{n:"Haaland",c:4},{n:"Mbappé",c:3},{n:"Lautaro",c:2},{n:"Vinicius Jr.",c:1}]},
-    {icon:"★", cat:"Balón de Oro", player_picks:{Yous:"Vinicius Jr.",Pablo:"Mbappé",Joaquin:"Vinicius Jr.",Christian:"Bellingham",Matsui:"Vinicius Jr.",Agus:"Mbappé",Brandon:"Yamal",Vito:"Vinicius Jr."},votos:[{n:"Vinicius Jr.",c:4},{n:"Mbappé",c:3},{n:"Bellingham",c:2},{n:"Yamal",c:1}]},
-    {icon:"◉", cat:"Mejor Arquero",player_picks:{Yous:"Courtois",Pablo:"Alisson",Joaquin:"Courtois",Christian:"Courtois",Matsui:"Ochoa",Agus:"Courtois",Brandon:"Alisson",Vito:"Courtois"},votos:[{n:"Courtois",c:5},{n:"Alisson",c:3},{n:"Ochoa",c:2}]},
-    {icon:"◈", cat:"Mejor Novato", player_picks:{Yous:"Yamal",Pablo:"Yamal",Joaquin:"Endrick",Christian:"Yamal",Matsui:"Yamal",Agus:"Mainoo",Brandon:"Yamal",Vito:"Yamal"},votos:[{n:"Yamal",c:6},{n:"Endrick",c:2},{n:"Mainoo",c:2}]},
+    {icon:"⚽",cat:"Bota de Oro",  player_picks:{Joaquin:"Haaland",Christian:"Lautaro"},  votos:[{n:"Haaland",c:1},{n:"Lautaro",c:1}]},
+    {icon:"★", cat:"Balón de Oro", player_picks:{Joaquin:"Vinicius Jr.",Christian:"Bellingham"},votos:[{n:"Vinicius Jr.",c:1},{n:"Bellingham",c:1}]},
+    {icon:"◉", cat:"Mejor Arquero",player_picks:{Joaquin:"Courtois",Christian:"Courtois"},votos:[{n:"Courtois",c:2}]},
+    {icon:"◈", cat:"Mejor Novato", player_picks:{Joaquin:"Endrick",Christian:"Yamal"},   votos:[{n:"Endrick",c:1},{n:"Yamal",c:1}]},
   ],
+  // Partidos del 11 de junio con pronósticos reales de Joaquin y Christian
   partidos:[
-    {grupo:"Grupo A",hora:"17:00",local:"México",visitante:"Ecuador",resultado:null,
+    {grupo:"Grupo A",hora:"19:00 CT",local:"México",visitante:"Sudáfrica",resultado:null,
      pronosticos:[
-       {nombre:"Yous",local:2,visitante:0},{nombre:"Pablo",local:1,visitante:1},
-       {nombre:"Joaquin",local:2,visitante:1},{nombre:"Christian",local:1,visitante:0},
-       {nombre:"Matsui",local:2,visitante:0},{nombre:"Agus",local:3,visitante:1},
-       {nombre:"Brandon",local:1,visitante:2},{nombre:"Vito",local:2,visitante:2},
+       {nombre:"Joaquin",local:2,visitante:0},
+       {nombre:"Christian",local:2,visitante:1},
+     ]},
+    {grupo:"Grupo A",hora:"22:00 CT",local:"México",visitante:"Corea del Sur",resultado:null,
+     pronosticos:[
+       {nombre:"Joaquin",local:2,visitante:1},
+       {nombre:"Christian",local:1,visitante:0},
      ]},
   ],
-  // Historial de resultados y pronósticos de grupos (últimos 10 partidos para racha)
-  historial:[
-    {resultado:[2,1], prons:{Yous:[2,1],Pablo:[1,1],Joaquin:[2,1],Christian:[1,0],Matsui:[2,0],Agus:[3,1],Brandon:[1,2],Vito:[2,2]}},
-    {resultado:[0,0], prons:{Yous:[0,0],Pablo:[1,0],Joaquin:[0,1],Christian:[0,0],Matsui:[1,0],Agus:[0,1],Brandon:[1,1],Vito:[0,0]}},
-    {resultado:[1,2], prons:{Yous:[1,2],Pablo:[0,1],Joaquin:[1,1],Christian:[2,1],Matsui:[0,2],Agus:[1,2],Brandon:[0,1],Vito:[1,2]}},
-    {resultado:[2,0], prons:{Yous:[2,0],Pablo:[1,0],Joaquin:[2,1],Christian:[2,0],Matsui:[1,0],Agus:[2,0],Brandon:[1,0],Vito:[2,1]}},
-    {resultado:[1,1], prons:{Yous:[1,0],Pablo:[1,1],Joaquin:[1,1],Christian:[0,1],Matsui:[1,1],Agus:[2,0],Brandon:[1,1],Vito:[0,0]}},
-    {resultado:[3,1], prons:{Yous:[3,1],Pablo:[2,0],Joaquin:[2,1],Christian:[3,1],Matsui:[2,0],Agus:[3,1],Brandon:[1,0],Vito:[2,1]}},
-    {resultado:[0,2], prons:{Yous:[0,2],Pablo:[1,2],Joaquin:[0,1],Christian:[0,2],Matsui:[1,1],Agus:[0,2],Brandon:[1,2],Vito:[0,0]}},
-    {resultado:[1,0], prons:{Yous:[2,0],Pablo:[1,0],Joaquin:[1,0],Christian:[1,0],Matsui:[2,1],Agus:[1,0],Brandon:[0,1],Vito:[1,1]}},
-    {resultado:[2,2], prons:{Yous:[1,1],Pablo:[2,2],Joaquin:[2,1],Christian:[1,0],Matsui:[2,2],Agus:[1,1],Brandon:[2,2],Vito:[1,2]}},
-    {resultado:[1,3], prons:{Yous:[0,2],Pablo:[1,3],Joaquin:[0,3],Christian:[1,2],Matsui:[1,3],Agus:[0,1],Brandon:[1,3],Vito:[0,2]}},
-  ],
+  // Historial vacío — el torneo empieza el 11 de junio, se llena automáticamente
+  historial:[],
+  // Pronósticos de grupos — solo Joaquin y Christian por ahora
   pronosticos_grupos:[
-    {nombre:"Yous",     partidos:[[2,0],[1,0],[2,1],[0,1],[1,2],[0,1],[2,1],[1,0],[3,0],[2,1],[1,1],[0,0],[3,1],[1,0],[2,1],[0,0],[2,0],[1,1],[3,0],[1,0],[2,1],[1,1],[2,0],[1,0],[2,1],[1,0],[2,1],[0,1],[2,0],[1,1],[3,0],[1,0],[2,1],[2,0],[1,1],[0,1],[3,1],[1,0],[2,1],[0,0],[2,0],[1,1],[3,0],[1,0],[2,1],[1,1],[2,0],[1,0],[1,0],[2,1],[1,2],[3,0],[2,1],[0,1],[2,0],[1,1],[3,0],[1,0],[2,1],[0,0],[2,0],[1,0],[2,1],[1,0],[2,1],[0,1],[3,1],[1,0],[2,1],[0,0],[1,1],[2,0]]},
-    {nombre:"Pablo",    partidos:[[1,1],[0,1],[1,1],[1,2],[0,1],[1,1],[1,1],[2,1],[2,2],[1,1],[2,1],[1,1],[2,1],[0,1],[1,1],[1,1],[2,1],[0,1],[2,1],[0,1],[1,1],[0,1],[1,1],[0,1],[1,1],[0,1],[1,1],[1,1],[1,1],[0,1],[2,1],[0,1],[1,1],[1,1],[0,1],[1,1],[2,1],[0,1],[1,1],[1,1],[1,1],[0,1],[2,1],[0,1],[1,1],[0,1],[1,1],[0,1],[0,1],[1,1],[2,1],[2,1],[1,1],[1,1],[1,1],[0,1],[2,1],[0,1],[1,1],[1,1],[1,1],[0,1],[1,1],[0,1],[1,1],[1,1],[2,1],[0,1],[1,1],[1,1],[0,1],[1,1]]},
     {nombre:"Joaquin",  partidos:[[2,1],[1,0],[2,0],[0,1],[1,1],[0,1],[2,0],[1,0],[3,1],[2,0],[1,2],[0,0],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,1],[2,0],[1,0],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[2,1],[1,0],[0,1],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,1],[2,0],[1,2],[3,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[0,1],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[3,0],[1,0],[2,1],[0,1],[1,0],[2,1]]},
     {nombre:"Christian",partidos:[[1,0],[2,1],[1,0],[1,1],[2,0],[1,1],[1,0],[2,1],[2,0],[1,0],[2,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,1],[1,0],[2,1],[1,0],[2,1],[1,0],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[2,0],[1,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[2,0],[2,0],[1,0],[2,1],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,0]]},
-    {nombre:"Matsui",   partidos:[[2,0],[1,1],[2,1],[1,0],[0,2],[1,0],[2,0],[1,1],[3,0],[1,0],[2,0],[0,1],[3,0],[1,0],[2,0],[0,1],[2,0],[1,0],[3,0],[1,0],[2,0],[1,0],[2,0],[1,0],[2,0],[1,0],[2,0],[1,0],[2,0],[1,0],[3,0],[1,0],[2,0],[2,0],[1,0],[0,1],[3,0],[1,0],[2,0],[0,1],[2,0],[1,0],[3,0],[1,0],[2,0],[1,0],[2,0],[1,0],[1,0],[2,0],[1,2],[3,0],[2,0],[0,1],[2,0],[1,0],[3,0],[1,0],[2,0],[0,1],[2,0],[1,0],[2,0],[1,0],[2,0],[0,1],[3,0],[1,0],[2,0],[0,1],[1,0],[2,0]]},
-    {nombre:"Agus",     partidos:[[3,1],[0,1],[3,1],[1,2],[1,1],[1,0],[3,1],[0,1],[4,0],[3,1],[0,2],[1,0],[4,1],[0,1],[3,1],[1,0],[3,1],[0,1],[4,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[4,1],[0,1],[3,1],[3,1],[0,1],[0,1],[4,1],[0,1],[3,1],[0,1],[3,1],[0,1],[4,1],[0,1],[3,1],[0,1],[3,1],[0,1],[0,1],[3,1],[0,2],[4,1],[3,1],[0,1],[3,1],[0,1],[4,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[4,1],[0,1],[3,1],[0,1],[0,1],[3,1]]},
-    {nombre:"Brandon",  partidos:[[1,2],[1,1],[1,1],[0,2],[2,1],[1,1],[1,1],[1,2],[1,1],[1,2],[2,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[2,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,2],[1,1],[1,1],[1,1],[1,1],[1,1]]},
-    {nombre:"Vito",     partidos:[[2,2],[1,0],[2,2],[1,1],[1,2],[0,0],[2,2],[1,0],[3,2],[2,2],[1,1],[0,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[1,0],[2,2],[1,0],[2,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[2,2],[1,0],[0,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[1,0],[2,2],[1,0],[1,0],[2,2],[1,1],[3,2],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[2,2],[1,0],[2,2],[0,0],[3,2],[1,0],[2,2],[0,0],[1,0],[2,2]]},
   ],
-  resultados_grupos:[[2,1],[0,0],[1,1],[2,0],[0,1],[3,1],[1,1],[2,0],[2,0],[1,1],[1,2],[0,0],[3,0],[1,0],[2,1],[1,1],[2,0],[1,1],[2,1],[0,0],[2,1],[1,1],[1,0],[0,1],[2,0],[1,1],[2,1],[0,1],[2,1],[1,0],[3,1],[0,1],[1,1],[2,0],[1,1],[0,0],[3,1],[1,0],[2,0],[0,1],[2,1],[1,0],[3,0],[1,0],[2,1],[1,1],[2,0],[1,0],[1,0],[2,1],[1,2],[2,1],[2,0],[0,1],[2,1],[1,0],[2,1],[1,0],[2,0],[0,1],[2,0],[1,0],[2,1],[1,0],[2,1],[0,1],[3,1],[1,0],[2,1],[0,0],[1,1],[2,0]],
-  mexico_partidos:[{idx:0,esLocal:true},{idx:35,esLocal:false},{idx:71,esLocal:true}],
+  // Resultados vacíos — se llenan con la API automáticamente
+  resultados_grupos:[],
+  // México juega partidos idx 0,1,2 en el Grupo A (vs Sudáfrica, Corea del Sur, Chequia)
+  mexico_partidos:[{idx:0,esLocal:true},{idx:1,esLocal:true},{idx:2,esLocal:true}],
 };
 
 // ── TICKER ───────────────────────────────────────────────
@@ -1084,55 +1070,38 @@ function parseClasificacion(csv){
 
 function parseResultados(csv){
   const rows=parseCSV(csv);
-  // Find the groups section header row
   const grpIdx=rows.findIndex(r=>r.some(c=>c.includes('Grp')||c.includes('Local')));
   if(grpIdx<0)return{partidos:[],lastUpdate:'—'};
 
-  const today=new Date();
-  const todayStr=today.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
-  const partidos=[];
+  const todayStr=new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+  const allPartidos=[];
 
   for(let i=grpIdx+1;i<rows.length;i++){
     const r=rows[i];
-    if(!r[1]||!r[4])continue; // skip empty rows
-    // Skip elimination section headers
-    if(r[0]&&!r[1]&&!r[2])continue;
-    const grupo  =(r[0]||'').trim();
-    const local  =(r[1]||'').trim();
-    const golesL =(r[2]||'').trim();
-    const golesV =(r[3]||'').trim();
-    const visitante=(r[4]||'').trim();
-    const estado =(r[5]||'').trim();
-    if(!local||!visitante)continue;
-    // Only show today's matches (pending) or recently played
+    const local=(r[1]||'').trim();
+    const visita=(r[4]||'').trim();
+    if(!local||!visita)continue;
+    const grupo=(r[0]||'').trim();
+    const golesL=(r[2]||'').trim();
+    const golesV=(r[3]||'').trim();
     const jugado=golesL!==''&&golesV!==''&&!isNaN(parseInt(golesL));
-    // For now include all pending matches as today's (torneo no ha empezado)
-    // Once real dates exist in sheet, filter by date
-    if(estado.includes('Pendiente')||jugado){
-      partidos.push({
-        grupo:`Grupo ${grupo}`,
-        hora:'—',
-        local,
-        visitante,
-        resultado:jugado?[parseInt(golesL),parseInt(golesV)]:null,
-        pronosticos: DATA.partidos.find(p=>p.local===local&&p.visitante===visitante)?.pronosticos || [],
-      });
-    }
+    // Skip section header rows (they have emoji in col 0)
+    if(grupo.includes('🏅')||grupo.includes('🏆')||grupo.includes('🎖'))continue;
+    const pronosticos=DATA.partidos.find(p=>p.local===local&&p.visitante===visita)?.pronosticos||[];
+    allPartidos.push({
+      grupo:`Grupo ${grupo}`,hora:'—',local,visitante:visita,
+      resultado:jugado?[parseInt(golesL),parseInt(golesV)]:null,
+      pronosticos,
+    });
   }
 
-  // Only show first 4 pending/today matches to keep section clean
-  const pending=partidos.filter(p=>!p.resultado).slice(0,4);
-  const played =partidos.filter(p=>p.resultado).slice(-2);
-  const displayPartidos=[...played,...pending].slice(0,6);
-
-  return{
-    partidos:displayPartidos,
-    lastUpdate:todayStr,
-  };
+  // Show: last 2 played + next 4 pending (not all 72)
+  const played =allPartidos.filter(p=>p.resultado).slice(-2);
+  const pending=allPartidos.filter(p=>!p.resultado).slice(0,4);
+  return{partidos:[...played,...pending],lastUpdate:todayStr};
 }
 
 async function loadLiveData(){
-  // Show loading state
   document.getElementById('navUpdate').textContent='Cargando...';
   try{
     const [csvClasif,csvRes]=await Promise.all([
@@ -1140,24 +1109,33 @@ async function loadLiveData(){
       fetch(CSV_RESULTADOS+'&t='+Date.now()).then(r=>r.text()),
     ]);
 
-    // Parse clasificacion
+    // Parse clasificacion — only update if real player names come through
     const livePlayers=parseClasificacion(csvClasif);
     if(livePlayers&&livePlayers.length){
-      DATA.players=livePlayers;
+      // Merge: preserve static pos_picks and camp_pick for known players
+      DATA.players=livePlayers.map(lp=>{
+        const existing=DATA.players.find(p=>p.name===lp.name)||{};
+        return{...existing,...lp};
+      });
     }
 
-    // Parse resultados → partidos del día
+    // Parse resultados — merge played results into static partidos list
     const liveRes=parseResultados(csvRes);
-    if(liveRes.partidos.length){
-      DATA.partidos=liveRes.partidos;
-    }
+    // Update any played results in static DATA.partidos
+    liveRes.partidos.forEach(lp=>{
+      if(!lp.resultado)return;
+      const existing=DATA.partidos.find(p=>p.local===lp.local&&p.visitante===lp.visitante);
+      if(existing) existing.resultado=lp.resultado;
+    });
+    // Replace DATA.partidos display with live version (next 4 + last 2)
+    if(liveRes.partidos.length) DATA.partidos=liveRes.partidos;
+
     DATA.lastUpdate=liveRes.lastUpdate;
 
   }catch(err){
     console.warn('Live fetch failed, using static DATA.',err);
   }
 
-  // Render with whatever data we have (live or static fallback)
   render();
   setTimeout(()=>buildChart(DATA.players),50);
 }
