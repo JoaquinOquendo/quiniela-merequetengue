@@ -513,44 +513,97 @@ const COLORS=["#006847","#CE1126","#FFD700","#3CAC3B","#FF6B35","#8B5CF6","#14B8
 const DATA={
   lastUpdate:"11 Jun 2026 · 00:00",
   players:[
-    {name:"Joaquin",       camp_pick:"México",   pos_picks:{p1:"México",   p2:"Argentina", sf1:"Brasil",  sf2:"Francia"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
-    {name:"Christian",     camp_pick:"Argentina",pos_picks:{p1:"Argentina",p2:"México",    sf1:"Francia", sf2:"Brasil"},  grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
-    {name:"Vito VIllalobos",camp_pick:"Brasil",  pos_picks:{p1:"Brasil",   p2:"Argentina", sf1:"México",  sf2:"Francia"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
+    {name:"Joaquin",        camp_pick:"Francia",  pos_picks:{p1:"Francia",  p2:"Portugal",   sf1:"España",    sf2:"Inglaterra"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
+    {name:"Christian",      camp_pick:"Portugal", pos_picks:{p1:"Portugal", p2:"Francia",    sf1:"España",    sf2:"Inglaterra"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
+    {name:"Vito VIllalobos",camp_pick:"Francia",  pos_picks:{p1:"Francia",  p2:"Inglaterra", sf1:"España",    sf2:"Bélgica"},    grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
   ],
   premios:[
-    {icon:"⚽",cat:"Bota de Oro",  player_picks:{"Joaquin":"Haaland","Christian":"Lautaro","Vito VIllalobos":"Haaland"},  votos:[{n:"Haaland",c:2},{n:"Lautaro",c:1}]},
-    {icon:"★", cat:"Balón de Oro", player_picks:{"Joaquin":"Vinicius Jr.","Christian":"Bellingham","Vito VIllalobos":"Vinicius Jr."},votos:[{n:"Vinicius Jr.",c:2},{n:"Bellingham",c:1}]},
-    {icon:"◉", cat:"Mejor Arquero",player_picks:{"Joaquin":"Courtois","Christian":"Courtois","Vito VIllalobos":"Courtois"},votos:[{n:"Courtois",c:3}]},
-    {icon:"◈", cat:"Mejor Novato", player_picks:{"Joaquin":"Endrick","Christian":"Yamal","Vito VIllalobos":"Yamal"},   votos:[{n:"Yamal",c:2},{n:"Endrick",c:1}]},
+    {icon:"⚽",cat:"Bota de Oro",  player_picks:{"Joaquin":"Mbappé","Christian":"Mbappé","Vito VIllalobos":"Mbappé"}, votos:[{n:"Mbappé",c:3}]},
+    {icon:"★", cat:"Balón de Oro", player_picks:{"Joaquin":"Mbappé","Christian":"Bruno Fernandes","Vito VIllalobos":"Lamine Yamal"}, votos:[{n:"Mbappé",c:1},{n:"Bruno Fernandes",c:1},{n:"Lamine Yamal",c:1}]},
+    {icon:"◉", cat:"Mejor Arquero",player_picks:{"Joaquin":"Maignan","Christian":"Diogo Costa","Vito VIllalobos":"Maignan"}, votos:[{n:"Maignan",c:2},{n:"Diogo Costa",c:1}]},
+    {icon:"◈", cat:"Mejor Novato", player_picks:{"Joaquin":"Lamine Yamal","Christian":"Lamine Yamal","Vito VIllalobos":"Joao Neves"}, votos:[{n:"Lamine Yamal",c:2},{n:"Joao Neves",c:1}]},
   ],
+  // Fixture completo — 72 partidos de fase de grupos ordenados por fecha
+  // La sección "Juegos" muestra automáticamente los más próximos a hoy
   partidos:[
-    {grupo:"Grupo A",hora:"Jun 11 · 14:00 CDMX",local:"México",visitante:"Sudáfrica",resultado:null,
-     pronosticos:[
-       {nombre:"Joaquin",local:2,visitante:0},
-       {nombre:"Christian",local:2,visitante:1},
-       {nombre:"Vito",local:2,visitante:2},
-     ]},
-    {grupo:"Grupo A",hora:"Jun 11 · 21:00 CDMX",local:"Corea del Sur",visitante:"Chequia",resultado:null,
-     pronosticos:[]},
-    {grupo:"Grupo A",hora:"Jun 18 · 11:00 CDMX",local:"Chequia",visitante:"Sudáfrica",resultado:null,
-     pronosticos:[]},
-    {grupo:"Grupo A",hora:"Jun 18 · 20:00 CDMX",local:"México",visitante:"Corea del Sur",resultado:null,
-     pronosticos:[
-       {nombre:"Joaquin",local:2,visitante:1},
-       {nombre:"Christian",local:1,visitante:0},
-       {nombre:"Vito",local:1,visitante:1},
-     ]},
-    {grupo:"Grupo A",hora:"Jun 24 · 20:00 CDMX",local:"Chequia",visitante:"México",resultado:null,
-     pronosticos:[]},
-    {grupo:"Grupo A",hora:"Jun 24 · 20:00 CDMX",local:"Sudáfrica",visitante:"Corea del Sur",resultado:null,
-     pronosticos:[]},
+    {grupo:"Grupo A",hora:"Jun 11 · 13:00 CDMX",local:"México",visitante:"Sudáfrica",resultado:null,pronosticos:[{nombre:"Joaquin",local:2,visitante:0},{nombre:"Christian",local:2,visitante:0},{nombre:"Vito",local:1,visitante:0}]},
+    {grupo:"Grupo A",hora:"Jun 11 · 20:00 CDMX",local:"Corea del Sur",visitante:"Chequia",resultado:null,pronosticos:[{nombre:"Joaquin",local:1,visitante:1},{nombre:"Christian",local:1,visitante:1},{nombre:"Vito",local:1,visitante:1}]},
+    {grupo:"Grupo B",hora:"Jun 12 · 13:00 CDMX",local:"Canadá",visitante:"Bosnia y Herzegovina",resultado:null,pronosticos:[]},
+    {grupo:"Grupo D",hora:"Jun 12 · 19:00 CDMX",local:"Estados Unidos",visitante:"Paraguay",resultado:null,pronosticos:[]},
+    {grupo:"Grupo B",hora:"Jun 13 · 13:00 CDMX",local:"Qatar",visitante:"Suiza",resultado:null,pronosticos:[]},
+    {grupo:"Grupo C",hora:"Jun 13 · 16:00 CDMX",local:"Brasil",visitante:"Marruecos",resultado:null,pronosticos:[]},
+    {grupo:"Grupo C",hora:"Jun 13 · 19:00 CDMX",local:"Haití",visitante:"Escocia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo D",hora:"Jun 13 · 22:00 CDMX",local:"Australia",visitante:"Turquía",resultado:null,pronosticos:[]},
+    {grupo:"Grupo E",hora:"Jun 14 · 11:00 CDMX",local:"Alemania",visitante:"Curazao",resultado:null,pronosticos:[]},
+    {grupo:"Grupo F",hora:"Jun 14 · 14:00 CDMX",local:"Países Bajos",visitante:"Japón",resultado:null,pronosticos:[]},
+    {grupo:"Grupo E",hora:"Jun 14 · 17:00 CDMX",local:"Costa de Marfil",visitante:"Ecuador",resultado:null,pronosticos:[]},
+    {grupo:"Grupo F",hora:"Jun 14 · 20:00 CDMX",local:"Suecia",visitante:"Túnez",resultado:null,pronosticos:[]},
+    {grupo:"Grupo H",hora:"Jun 15 · 10:00 CDMX",local:"España",visitante:"Cabo Verde",resultado:null,pronosticos:[]},
+    {grupo:"Grupo G",hora:"Jun 15 · 13:00 CDMX",local:"Bélgica",visitante:"Egipto",resultado:null,pronosticos:[]},
+    {grupo:"Grupo H",hora:"Jun 15 · 16:00 CDMX",local:"Arabia Saudita",visitante:"Uruguay",resultado:null,pronosticos:[]},
+    {grupo:"Grupo G",hora:"Jun 15 · 19:00 CDMX",local:"Irán",visitante:"Nueva Zelanda",resultado:null,pronosticos:[]},
+    {grupo:"Grupo I",hora:"Jun 16 · 13:00 CDMX",local:"Francia",visitante:"Senegal",resultado:null,pronosticos:[]},
+    {grupo:"Grupo I",hora:"Jun 16 · 16:00 CDMX",local:"Irak",visitante:"Noruega",resultado:null,pronosticos:[]},
+    {grupo:"Grupo J",hora:"Jun 16 · 19:00 CDMX",local:"Argentina",visitante:"Argelia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo J",hora:"Jun 16 · 22:00 CDMX",local:"Austria",visitante:"Jordania",resultado:null,pronosticos:[]},
+    {grupo:"Grupo K",hora:"Jun 17 · 11:00 CDMX",local:"Portugal",visitante:"Congo DR",resultado:null,pronosticos:[]},
+    {grupo:"Grupo L",hora:"Jun 17 · 14:00 CDMX",local:"Inglaterra",visitante:"Croacia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo L",hora:"Jun 17 · 17:00 CDMX",local:"Ghana",visitante:"Panamá",resultado:null,pronosticos:[]},
+    {grupo:"Grupo K",hora:"Jun 17 · 20:00 CDMX",local:"Uzbekistán",visitante:"Colombia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo A",hora:"Jun 18 · 10:00 CDMX",local:"Chequia",visitante:"Sudáfrica",resultado:null,pronosticos:[{nombre:"Joaquin",local:2,visitante:1},{nombre:"Christian",local:1,visitante:1},{nombre:"Vito",local:2,visitante:0}]},
+    {grupo:"Grupo B",hora:"Jun 18 · 13:00 CDMX",local:"Suiza",visitante:"Bosnia y Herzegovina",resultado:null,pronosticos:[]},
+    {grupo:"Grupo B",hora:"Jun 18 · 16:00 CDMX",local:"Canadá",visitante:"Qatar",resultado:null,pronosticos:[]},
+    {grupo:"Grupo A",hora:"Jun 18 · 19:00 CDMX",local:"México",visitante:"Corea del Sur",resultado:null,pronosticos:[{nombre:"Joaquin",local:2,visitante:1},{nombre:"Christian",local:1,visitante:1},{nombre:"Vito",local:2,visitante:1}]},
+    {grupo:"Grupo D",hora:"Jun 19 · 13:00 CDMX",local:"Estados Unidos",visitante:"Australia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo C",hora:"Jun 19 · 16:00 CDMX",local:"Escocia",visitante:"Marruecos",resultado:null,pronosticos:[]},
+    {grupo:"Grupo C",hora:"Jun 19 · 18:30 CDMX",local:"Brasil",visitante:"Haití",resultado:null,pronosticos:[]},
+    {grupo:"Grupo D",hora:"Jun 19 · 21:00 CDMX",local:"Turquía",visitante:"Paraguay",resultado:null,pronosticos:[]},
+    {grupo:"Grupo F",hora:"Jun 20 · 11:00 CDMX",local:"Países Bajos",visitante:"Suecia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo E",hora:"Jun 20 · 14:00 CDMX",local:"Alemania",visitante:"Costa de Marfil",resultado:null,pronosticos:[]},
+    {grupo:"Grupo E",hora:"Jun 20 · 18:00 CDMX",local:"Ecuador",visitante:"Curazao",resultado:null,pronosticos:[]},
+    {grupo:"Grupo F",hora:"Jun 20 · 22:00 CDMX",local:"Túnez",visitante:"Japón",resultado:null,pronosticos:[]},
+    {grupo:"Grupo H",hora:"Jun 21 · 10:00 CDMX",local:"España",visitante:"Arabia Saudita",resultado:null,pronosticos:[]},
+    {grupo:"Grupo G",hora:"Jun 21 · 13:00 CDMX",local:"Bélgica",visitante:"Irán",resultado:null,pronosticos:[]},
+    {grupo:"Grupo H",hora:"Jun 21 · 16:00 CDMX",local:"Uruguay",visitante:"Cabo Verde",resultado:null,pronosticos:[]},
+    {grupo:"Grupo G",hora:"Jun 21 · 19:00 CDMX",local:"Nueva Zelanda",visitante:"Egipto",resultado:null,pronosticos:[]},
+    {grupo:"Grupo J",hora:"Jun 22 · 11:00 CDMX",local:"Argentina",visitante:"Austria",resultado:null,pronosticos:[]},
+    {grupo:"Grupo I",hora:"Jun 22 · 15:00 CDMX",local:"Francia",visitante:"Irak",resultado:null,pronosticos:[]},
+    {grupo:"Grupo I",hora:"Jun 22 · 18:00 CDMX",local:"Noruega",visitante:"Senegal",resultado:null,pronosticos:[]},
+    {grupo:"Grupo J",hora:"Jun 22 · 21:00 CDMX",local:"Jordania",visitante:"Argelia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo K",hora:"Jun 23 · 11:00 CDMX",local:"Portugal",visitante:"Uzbekistán",resultado:null,pronosticos:[]},
+    {grupo:"Grupo L",hora:"Jun 23 · 14:00 CDMX",local:"Inglaterra",visitante:"Ghana",resultado:null,pronosticos:[]},
+    {grupo:"Grupo L",hora:"Jun 23 · 17:00 CDMX",local:"Panamá",visitante:"Croacia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo K",hora:"Jun 23 · 20:00 CDMX",local:"Colombia",visitante:"Congo DR",resultado:null,pronosticos:[]},
+    {grupo:"Grupo B",hora:"Jun 24 · 13:00 CDMX",local:"Suiza",visitante:"Canadá",resultado:null,pronosticos:[]},
+    {grupo:"Grupo B",hora:"Jun 24 · 13:00 CDMX",local:"Bosnia y Herzegovina",visitante:"Qatar",resultado:null,pronosticos:[]},
+    {grupo:"Grupo C",hora:"Jun 24 · 16:00 CDMX",local:"Marruecos",visitante:"Haití",resultado:null,pronosticos:[]},
+    {grupo:"Grupo C",hora:"Jun 24 · 16:00 CDMX",local:"Escocia",visitante:"Brasil",resultado:null,pronosticos:[]},
+    {grupo:"Grupo A",hora:"Jun 24 · 19:00 CDMX",local:"Chequia",visitante:"México",resultado:null,pronosticos:[{nombre:"Joaquin",local:2,visitante:1},{nombre:"Christian",local:1,visitante:0},{nombre:"Vito",local:2,visitante:1}]},
+    {grupo:"Grupo A",hora:"Jun 24 · 19:00 CDMX",local:"Sudáfrica",visitante:"Corea del Sur",resultado:null,pronosticos:[{nombre:"Joaquin",local:1,visitante:2},{nombre:"Christian",local:1,visitante:1},{nombre:"Vito",local:0,visitante:2}]},
+    {grupo:"Grupo E",hora:"Jun 25 · 14:00 CDMX",local:"Ecuador",visitante:"Alemania",resultado:null,pronosticos:[]},
+    {grupo:"Grupo E",hora:"Jun 25 · 14:00 CDMX",local:"Curazao",visitante:"Costa de Marfil",resultado:null,pronosticos:[]},
+    {grupo:"Grupo F",hora:"Jun 25 · 17:00 CDMX",local:"Túnez",visitante:"Países Bajos",resultado:null,pronosticos:[]},
+    {grupo:"Grupo F",hora:"Jun 25 · 17:00 CDMX",local:"Japón",visitante:"Suecia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo D",hora:"Jun 25 · 20:00 CDMX",local:"Turquía",visitante:"Estados Unidos",resultado:null,pronosticos:[]},
+    {grupo:"Grupo D",hora:"Jun 25 · 20:00 CDMX",local:"Paraguay",visitante:"Australia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo I",hora:"Jun 26 · 13:00 CDMX",local:"Noruega",visitante:"Francia",resultado:null,pronosticos:[]},
+    {grupo:"Grupo I",hora:"Jun 26 · 13:00 CDMX",local:"Senegal",visitante:"Irak",resultado:null,pronosticos:[]},
+    {grupo:"Grupo H",hora:"Jun 26 · 18:00 CDMX",local:"Uruguay",visitante:"España",resultado:null,pronosticos:[]},
+    {grupo:"Grupo H",hora:"Jun 26 · 18:00 CDMX",local:"Cabo Verde",visitante:"Arabia Saudita",resultado:null,pronosticos:[]},
+    {grupo:"Grupo G",hora:"Jun 26 · 21:00 CDMX",local:"Nueva Zelanda",visitante:"Bélgica",resultado:null,pronosticos:[]},
+    {grupo:"Grupo G",hora:"Jun 26 · 21:00 CDMX",local:"Egipto",visitante:"Irán",resultado:null,pronosticos:[]},
+    {grupo:"Grupo L",hora:"Jun 27 · 15:00 CDMX",local:"Panamá",visitante:"Inglaterra",resultado:null,pronosticos:[]},
+    {grupo:"Grupo L",hora:"Jun 27 · 15:00 CDMX",local:"Croacia",visitante:"Ghana",resultado:null,pronosticos:[]},
+    {grupo:"Grupo K",hora:"Jun 27 · 17:30 CDMX",local:"Colombia",visitante:"Portugal",resultado:null,pronosticos:[]},
+    {grupo:"Grupo K",hora:"Jun 27 · 17:30 CDMX",local:"Congo DR",visitante:"Uzbekistán",resultado:null,pronosticos:[]},
+    {grupo:"Grupo J",hora:"Jun 27 · 20:00 CDMX",local:"Jordania",visitante:"Argentina",resultado:null,pronosticos:[]},
+    {grupo:"Grupo J",hora:"Jun 27 · 20:00 CDMX",local:"Argelia",visitante:"Austria",resultado:null,pronosticos:[]}
   ],
   // Historial vacío — el torneo empieza el 11 de junio, se llena automáticamente
-  historial:[],
   pronosticos_grupos:[
-    {nombre:"Joaquin",       partidos:[[2,1],[1,0],[2,0],[0,1],[1,1],[0,1],[2,0],[1,0],[3,1],[2,0],[1,2],[0,0],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,1],[2,0],[1,0],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[2,1],[1,0],[0,1],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,1],[2,0],[1,2],[3,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[0,1],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[3,0],[1,0],[2,1],[0,1],[1,0],[2,1]]},
-    {nombre:"Christian",     partidos:[[1,0],[2,1],[1,0],[1,1],[2,0],[1,1],[1,0],[2,1],[2,0],[1,0],[2,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,1],[1,0],[2,1],[1,0],[2,1],[1,0],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[2,0],[1,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[2,0],[2,0],[1,0],[2,1],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,0]]},
-    {nombre:"Vito VIllalobos",partidos:[[2,2],[1,0],[2,2],[1,1],[1,2],[0,0],[2,2],[1,0],[3,2],[2,2],[1,1],[0,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[1,0],[2,2],[1,0],[2,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[2,2],[1,0],[0,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[1,0],[2,2],[1,0],[1,0],[2,2],[1,1],[3,2],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[2,2],[1,0],[2,2],[0,0],[3,2],[1,0],[2,2],[0,0],[1,0],[2,2]]},
+    {nombre:"Joaquin",       partidos:[[2,1],[2,0],[2,1],[2,1],[1,1],[1,2],[1,3],[2,0],[2,1],[2,0],[2,1],[1,2],[2,2],[2,1],[3,0],[2,0],[3,0],[2,0],[2,2],[1,1],[2,2],[1,1],[1,2],[1,1],[1,1],[3,1],[4,0],[2,1],[3,0],[3,0],[1,1],[2,0],[2,0],[2,0],[2,1],[0,2],[2,0],[2,1],[2,0],[0,1],[2,0],[2,0],[3,1],[3,0],[3,0],[2,0],[2,0],[2,1],[3,1],[2,1],[3,0],[1,2],[2,1],[2,0],[2,1],[2,0],[3,0],[2,1],[2,0],[2,0],[2,0],[3,0],[3,0],[2,0],[2,0],[1,1],[1,0],[3,0],[2,1],[2,0],[2,1],[0,2]]},
+    {nombre:"Christian",     partidos:[[1,1],[2,0],[1,0],[2,0],[1,1],[1,1],[1,2],[1,0],[1,0],[3,0],[2,0],[1,2],[2,1],[3,1],[3,0],[1,0],[2,0],[2,0],[2,0],[2,2],[1,1],[0,2],[0,3],[1,0],[1,2],[3,1],[3,0],[2,1],[3,1],[2,0],[1,0],[2,1],[1,1],[2,0],[2,1],[0,2],[3,1],[1,0],[4,1],[1,2],[2,0],[3,0],[2,1],[3,1],[4,0],[2,0],[2,0],[2,1],[2,2],[2,1],[3,0],[2,3],[2,0],[4,0],[2,0],[1,0],[3,1],[1,1],[2,0],[2,1],[2,1],[3,0],[2,0],[3,0],[2,0],[2,2],[3,1],[2,0],[2,0],[1,0],[2,1],[2,0]]},
+    {nombre:"Vito VIllalobos",partidos:[[2,1],[1,0],[2,1],[1,0],[1,1],[0,2],[1,1],[3,0],[2,1],[2,0],[2,0],[1,2],[1,1],[2,1],[3,0],[2,2],[2,0],[2,0],[2,1],[1,1],[1,3],[0,1],[0,2],[0,2],[1,0],[2,1],[4,0],[1,1],[3,0],[2,0],[2,1],[3,0],[2,1],[2,0],[1,1],[0,2],[1,0],[2,1],[3,0],[1,1],[1,0],[2,0],[2,2],[2,0],[4,0],[2,0],[3,0],[2,0],[2,1],[1,0],[3,0],[1,1],[2,0],[2,0],[2,1],[2,0],[3,0],[1,1],[1,0],[2,0],[2,1],[3,0],[3,0],[2,0],[2,0],[1,0],[1,1],[5,0],[2,1],[3,0],[2,1],[0,2]]},
   ],
   // Resultados vacíos — se llenan con la API automáticamente
   resultados_grupos:[],
@@ -567,7 +620,11 @@ function buildTicker(players){
 
 // ── ESPECIALES ───────────────────────────────────────────
 function calcEsp(){
-  const res=DATA.resultados_grupos,pros=DATA.pronosticos_grupos,mex=DATA.mexico_partidos||[];
+  const res=DATA.resultados_grupos; // array of 72, null if not played
+  const pros=DATA.pronosticos_grupos;
+  const mex=DATA.mexico_partidos||[];
+
+  // Only compute over played matches (non-null)
   const stats=pros.map(p=>{
     let exactos=0,mexGF=0,maxG=0,maxGdet='';
     p.partidos.forEach((pro,i)=>{
@@ -575,7 +632,11 @@ function calcEsp(){
       if(pro[0]===real[0]&&pro[1]===real[1])exactos++;
       const g=pro[0]+pro[1];if(g>maxG){maxG=g;maxGdet=`${pro[0]}-${pro[1]}`;}
     });
-    mex.forEach(mx2=>{const pro=p.partidos[mx2.idx];if(!pro)return;mexGF+=mx2.esLocal?pro[0]:pro[1];});
+    mex.forEach(mx2=>{
+      const real=res[mx2.idx];if(!real)return;
+      const pro=p.partidos[mx2.idx];if(!pro)return;
+      mexGF+=mx2.esLocal?pro[0]:pro[1];
+    });
     return{nombre:p.nombre,exactos,mexGF,maxG,maxGdet};
   });
   const adivino=[...stats].sort((a,b)=>b.exactos-a.exactos)[0];
@@ -604,29 +665,39 @@ function calcEsp(){
 }
 
 // ── RACHA ────────────────────────────────────────────────
+// Calcula racha automáticamente desde resultados_grupos + pronosticos_grupos
+// No necesita historial hardcodeado — todo viene de los CSVs
 function calcRacha(){
   return DATA.players.map(p=>{
-    const hist=DATA.historial;
-    let dots=[];
-    // Build full dot array oldest→newest
-    hist.forEach(h=>{
-      const pr=h.prons[p.name];
-      if(!pr){dots.push('draw');return;}
-      const [rl,rv]=h.resultado;
-      const ganadorR=rl>rv?1:rv>rl?-1:0;
-      const ganadorP=pr[0]>pr[1]?1:pr[1]>pr[0]?-1:0;
+    // Buscar pronósticos de este jugador en pronosticos_grupos
+    const prosData=DATA.pronosticos_grupos.find(pg=>pg.nombre===p.name);
+    const dots=[];
+
+    FIXTURE_ORDER.forEach(([local,visita],idx)=>{
+      const real=DATA.resultados_grupos[idx];
+      if(!real)return; // partido no jugado aún — no agregar punto
+
+      const pro=prosData?.partidos[idx];
+      if(!pro){dots.push('draw');return;}
+
+      // Comparar solo ganador (local/empate/visitante)
+      const ganadorR=real[0]>real[1]?1:real[1]>real[0]?-1:0;
+      const ganadorP=pro[0]>pro[1]?1:pro[1]>pro[0]?-1:0;
       dots.push(ganadorP===ganadorR?'hit':'miss');
     });
-    // Count current streak from newest backwards
+
+    // Racha actual: contar desde el último partido hacia atrás
     let racha=0;
     for(let i=dots.length-1;i>=0;i--){
-      if(dots[i]==='draw')continue; // skip draws
+      if(dots[i]==='draw')continue;
       if(racha===0){racha=dots[i]==='hit'?1:-1;}
       else if(racha>0&&dots[i]==='hit')racha++;
       else if(racha<0&&dots[i]==='miss')racha--;
       else break;
     }
-    return{name:p.name,racha,dots};
+
+    // Solo mostrar últimos 10 puntos
+    return{name:p.name,racha,dots:dots.slice(-10)};
   });
 }
 
@@ -715,15 +786,29 @@ function render(){
       <span class="v-n-ed">${v.c}</span></div>`).join('')}</div>`;
   }).join('');
 
-  // Partidos — solo mostrar los pendientes (no jugados)
+  // Juegos — mostrar partidos del día más próximo
   const pl=document.getElementById('partidosList');
+  const hoy=new Date();
+  // Extraer fecha de hora string "Jun 11 · 13:00 CDMX" → comparable
+  function parseFechaPartido(hora){
+    try{
+      const part=hora.split('·')[0].trim(); // "Jun 11"
+      return new Date(part+' 2026');
+    }catch(e){return new Date(9999,0,1);}
+  }
   const pendientes=DATA.partidos.filter(p=>!p.resultado);
+  // Encontrar la fecha más próxima a hoy
+  const fechas=[...new Set(pendientes.map(p=>parseFechaPartido(p.hora).toDateString()))].sort((a,b)=>new Date(a)-new Date(b));
+  const fechaTarget=fechas[0]||null;
+  const display=fechaTarget?pendientes.filter(p=>parseFechaPartido(p.hora).toDateString()===fechaTarget):pendientes.slice(0,6);
+  // También mostrar últimos 2 jugados
   const jugados=DATA.partidos.filter(p=>p.resultado).slice(-2);
-  const display=[...jugados,...pendientes].slice(0,6);
-  if(!display.length){
+  const displayFinal=[...jugados,...display];
+
+  if(!displayFinal.length){
     pl.innerHTML='<div class="partido-ed" style="padding:2rem;display:block;text-align:center"><span style="font-family:Syne;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)">Sin partidos próximos</span></div>';
   } else {
-    pl.innerHTML=display.map(p=>{
+    pl.innerHTML=displayFinal.map(p=>{
       const chips=p.pronosticos.map(pr=>{
         let cls='cde';if(pr.local>pr.visitante)cls='che';else if(pr.visitante>pr.local)cls='cae';
         return`<span class="chip-ed ${cls}">${e(pr.nombre)} ${pr.local}-${pr.visitante}</span>`;
@@ -829,14 +914,22 @@ function renderH2H(){
 
 // ── HEATMAP ──────────────────────────────────────────────
 function renderHeatmap(){
+  function parseFechaPartido(hora){
+    try{const part=hora.split('·')[0].trim();return new Date(part+' 2026');}
+    catch(e){return new Date(9999,0,1);}
+  }
   const pendientes=DATA.partidos.filter(p=>!p.resultado);
-  if(!pendientes.length){
+  const fechas=[...new Set(pendientes.map(p=>parseFechaPartido(p.hora).toDateString()))].sort((a,b)=>new Date(a)-new Date(b));
+  const fechaTarget=fechas[0]||null;
+  const porFecha=fechaTarget?pendientes.filter(p=>parseFechaPartido(p.hora).toDateString()===fechaTarget):pendientes.slice(0,6);
+
+  if(!porFecha.length){
     document.getElementById('heatmapWrap').innerHTML='<div style="padding:2rem;font-family:Syne;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);background:var(--ink2)">Sin partidos próximos</div>';
     return;
   }
   const players=DATA.players.map(p=>p.name);
   let html='';
-  pendientes.slice(0,6).forEach((partido)=>{
+  porFecha.forEach(partido=>{
     let picks={};
     partido.pronosticos.forEach(pr=>{const k=`${pr.local}-${pr.visitante}`;picks[k]=(picks[k]||[]);picks[k].push(pr.nombre);});
     html+=`<div class="hm-row" style="grid-template-columns:160px repeat(${players.length},1fr);margin-bottom:1px;">
@@ -1035,6 +1128,36 @@ function buildChart(players){
 // ── LIVE DATA FROM GOOGLE SHEETS ─────────────────────────
 const CSV_CLASIFICACION = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTvCD1bfQCnHnwsgNiRAokkQ0IA5zVuYpFUGOVc19AqYzjyvumseJaqcj1TFSjJAQ/pub?gid=221142825&single=true&output=csv';
 const CSV_RESULTADOS    = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTvCD1bfQCnHnwsgNiRAokkQ0IA5zVuYpFUGOVc19AqYzjyvumseJaqcj1TFSjJAQ/pub?gid=467036788&single=true&output=csv';
+const CSV_CAPTURA       = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTvCD1bfQCnHnwsgNiRAokkQ0IA5zVuYpFUGOVc19AqYzjyvumseJaqcj1TFSjJAQ/pub?gid=1113171896&single=true&output=csv';
+
+// Fixture order: 72 group stage matches in sheet column order
+// Used to map CAPTURA cols → partido names
+const FIXTURE_ORDER=[
+  ['México','Corea del Sur'],['México','Sudáfrica'],['México','Chequia'],
+  ['Corea del Sur','Sudáfrica'],['Corea del Sur','Chequia'],['Sudáfrica','Chequia'],
+  ['Canadá','Suiza'],['Canadá','Qatar'],['Canadá','Bosnia y Herzegovina'],
+  ['Suiza','Qatar'],['Suiza','Bosnia y Herzegovina'],['Qatar','Bosnia y Herzegovina'],
+  ['Brasil','Marruecos'],['Brasil','Escocia'],['Brasil','Haití'],
+  ['Marruecos','Escocia'],['Marruecos','Haití'],['Escocia','Haití'],
+  ['Estados Unidos','Australia'],['Estados Unidos','Paraguay'],['Estados Unidos','Turquía'],
+  ['Australia','Paraguay'],['Australia','Turquía'],['Paraguay','Turquía'],
+  ['Alemania','Ecuador'],['Alemania','Costa de Marfil'],['Alemania','Curazao'],
+  ['Ecuador','Costa de Marfil'],['Ecuador','Curazao'],['Costa de Marfil','Curazao'],
+  ['Países Bajos','Japón'],['Países Bajos','Túnez'],['Países Bajos','Suecia'],
+  ['Japón','Túnez'],['Japón','Suecia'],['Túnez','Suecia'],
+  ['Bélgica','Irán'],['Bélgica','Egipto'],['Bélgica','Nueva Zelanda'],
+  ['Irán','Egipto'],['Irán','Nueva Zelanda'],['Egipto','Nueva Zelanda'],
+  ['España','Uruguay'],['España','Arabia Saudita'],['España','Cabo Verde'],
+  ['Uruguay','Arabia Saudita'],['Uruguay','Cabo Verde'],['Arabia Saudita','Cabo Verde'],
+  ['Francia','Senegal'],['Francia','Noruega'],['Francia','Irak'],
+  ['Senegal','Noruega'],['Senegal','Irak'],['Noruega','Irak'],
+  ['Argentina','Austria'],['Argentina','Argelia'],['Argentina','Jordania'],
+  ['Austria','Argelia'],['Austria','Jordania'],['Argelia','Jordania'],
+  ['Portugal','Colombia'],['Portugal','Uzbekistán'],['Portugal','Congo DR'],
+  ['Colombia','Uzbekistán'],['Colombia','Congo DR'],['Uzbekistán','Congo DR'],
+  ['Inglaterra','Croacia'],['Inglaterra','Panamá'],['Inglaterra','Ghana'],
+  ['Croacia','Panamá'],['Croacia','Ghana'],['Panamá','Ghana'],
+];
 
 function parseCSV(text){
   return text.trim().split('\n').map(row=>{
@@ -1050,9 +1173,111 @@ function parseCSV(text){
   });
 }
 
+// ── PARSE CAPTURA ─────────────────────────────────────────
+// Returns: { players, pronosticos_grupos, partidos_pronosticos, premios, pos_picks }
+function parseCaptura(csv){
+  const rows=parseCSV(csv);
+  // Find data header row ("Participante" in col 0)
+  const hIdx=rows.findIndex(r=>r[0]==='Participante');
+  if(hIdx<0)return null;
+
+  const result={
+    players_captura:[],       // [{name, camp_pick, pos_picks}]
+    pronosticos_grupos:[],    // [{nombre, partidos:[[L,V]...]}]
+    partidos_pronosticos:{},  // {"local|visitante": [{nombre,local,visitante}...]}
+    premios:[],               // [{cat, player_picks:{}, votos:[]}]
+  };
+
+  // Col offsets after the 72×2 group cols (144 cols):
+  // +144: 24 cols for clasificados (1º/2º por grupo A-L)
+  // +168: 16 cols for octavos
+  // +184: 8 cols for cuartos
+  // +192: 4 cols for semis
+  // +196: 2 cols for final
+  // +198: 1 col campeón
+  // +199: 4 cols premios (Bota,Balón,Arquero,Novato)
+  const COL_CAMP = 198; // 0-indexed from col 0 = Participante
+  const COL_BOTA = 199;
+  const COL_BALON = 200;
+  const COL_ARQ = 201;
+  const COL_NOV = 202;
+
+  const premCats=['Bota de Oro','Balón de Oro','Mejor Arquero','Mejor Novato'];
+  const premIcons=['⚽','★','◉','◈'];
+  const premPicksMap=[{},{},{},{}];
+  const premVotosMap=[{},{},{},{}];
+
+  for(let i=hIdx+1;i<rows.length;i++){
+    const r=rows[i];
+    const name=(r[0]||'').trim();
+    if(!name||name==='Participante')continue;
+
+    // 72 group stage pronosticos
+    const partidos=[];
+    for(let j=0;j<72;j++){
+      const L=parseInt(r[1+j*2])||0;
+      const V=parseInt(r[2+j*2])||0;
+      partidos.push([L,V]);
+    }
+    result.pronosticos_grupos.push({nombre:name,partidos});
+
+    // Build partidos_pronosticos index
+    FIXTURE_ORDER.forEach(([local,visita],idx)=>{
+      const key=`${local}|${visita}`;
+      if(!result.partidos_pronosticos[key]) result.partidos_pronosticos[key]=[];
+      result.partidos_pronosticos[key].push({
+        nombre:name,
+        local:partidos[idx][0],
+        visitante:partidos[idx][1],
+      });
+    });
+
+    // Campeón y pos_picks (cols 144-167 = clasificados 1º/2º de grupos A-L)
+    const camp=(r[COL_CAMP]||'').trim();
+
+    // SF1-SF4 → cols 192-195 (0-indexed from Participante col)
+    // In the header row they are SF1,SF2,SF3,SF4
+    // Find SF columns dynamically
+    const headerRow=rows[hIdx];
+    const sf1Idx=headerRow.indexOf('SF1');
+    const sf2Idx=headerRow.indexOf('SF2');
+    const fin1Idx=headerRow.indexOf('Fin1');
+    const fin2Idx=headerRow.indexOf('Fin2');
+
+    const sf1=(sf1Idx>=0?(r[sf1Idx]||'').trim():'—');
+    const sf2=(sf2Idx>=0?(r[sf2Idx]||'').trim():'—');
+    const fin1=(fin1Idx>=0?(r[fin1Idx]||'').trim():'—');
+    const fin2=(fin2Idx>=0?(r[fin2Idx]||'').trim():'—');
+
+    result.players_captura.push({
+      name,
+      camp_pick:camp,
+      pos_picks:{p1:camp,p2:fin1===camp?fin2:fin1,sf1:sf1,sf2:sf2},
+    });
+
+    // Premios
+    [COL_BOTA,COL_BALON,COL_ARQ,COL_NOV].forEach((col,pi)=>{
+      const voto=(r[col]||'').trim();
+      if(voto){
+        premPicksMap[pi][name]=voto;
+        premVotosMap[pi][voto]=(premVotosMap[pi][voto]||0)+1;
+      }
+    });
+  }
+
+  // Build premios array
+  result.premios=premCats.map((cat,pi)=>{
+    const votos=Object.entries(premVotosMap[pi])
+      .sort((a,b)=>b[1]-a[1])
+      .map(([n,c])=>({n,c}));
+    return{icon:premIcons[pi],cat,player_picks:premPicksMap[pi],votos};
+  });
+
+  return result;
+}
+
 function parseClasificacion(csv){
   const rows=parseCSV(csv);
-  // Find header row (contains "Participante")
   const hIdx=rows.findIndex(r=>r.some(c=>c.includes('Participante')));
   if(hIdx<0)return null;
   const players=[];
@@ -1101,27 +1326,77 @@ function parseResultados(csv){
 async function loadLiveData(){
   document.getElementById('navUpdate').textContent='Cargando...';
   try{
-    const [csvClasif,csvRes]=await Promise.all([
+    const [csvClasif,csvRes,csvCap]=await Promise.all([
       fetch(CSV_CLASIFICACION+'&t='+Date.now()).then(r=>r.text()),
       fetch(CSV_RESULTADOS+'&t='+Date.now()).then(r=>r.text()),
+      fetch(CSV_CAPTURA+'&t='+Date.now()).then(r=>r.text()),
     ]);
 
-    // Parse clasificacion — merge with static data to preserve pos_picks etc.
-    const livePlayers=parseClasificacion(csvClasif);
-    if(livePlayers&&livePlayers.length){
-      DATA.players=livePlayers.map(lp=>{
-        const existing=DATA.players.find(p=>p.name===lp.name)||{};
-        return{...existing,...lp};
+    // 1. CAPTURA → pronósticos, premios, pos_picks, jugadores
+    const captura=parseCaptura(csvCap);
+    if(captura&&captura.players_captura.length){
+      // Update pronosticos_grupos
+      DATA.pronosticos_grupos=captura.pronosticos_grupos;
+
+      // Update premios
+      DATA.premios=captura.premios;
+
+      // Update pronósticos en partidos (chips en sección Juegos)
+      DATA.partidos.forEach(p=>{
+        const key=`${p.local}|${p.visitante}`;
+        if(captura.partidos_pronosticos[key]){
+          p.pronosticos=captura.partidos_pronosticos[key];
+        }
+      });
+
+      // Merge pos_picks and camp_pick into players
+      captura.players_captura.forEach(cp=>{
+        const existing=DATA.players.find(p=>p.name===cp.name);
+        if(existing){
+          existing.camp_pick=cp.camp_pick;
+          existing.pos_picks=cp.pos_picks;
+        }
       });
     }
 
-    // Parse resultados — only updates scores for played games
-    // Static DATA.partidos keeps its order, dates, and pronosticos
+    // 2. CLASIFICACION → puntos por fase, totales
+    const livePlayers=parseClasificacion(csvClasif);
+    if(livePlayers&&livePlayers.length){
+      // Add new players found in sheet but not in DATA yet
+      livePlayers.forEach(lp=>{
+        const existing=DATA.players.find(p=>p.name===lp.name);
+        if(existing){
+          // Update points, preserve pos_picks/camp_pick from captura
+          Object.assign(existing,{
+            grp:lp.grp,oct:lp.oct,qf:lp.qf,sf:lp.sf,
+            fin:lp.fin,camp:lp.camp,prem:lp.prem,total:lp.total,
+          });
+        } else {
+          // New participant — add with captura data if available
+          const cap=captura?.players_captura.find(c=>c.name===lp.name)||{};
+          DATA.players.push({...lp,...cap});
+        }
+      });
+      // Remove players no longer in sheet
+      DATA.players=DATA.players.filter(p=>
+        livePlayers.some(lp=>lp.name===p.name)
+      );
+    }
+
+    // 3. RESULTADOS → marcar partidos jugados
     const liveRes=parseResultados(csvRes);
     DATA.partidos.forEach(p=>{
       const key=`${p.local}|${p.visitante}`;
       if(liveRes.resultados[key]) p.resultado=liveRes.resultados[key];
     });
+
+    // 4. resultados_grupos — array indexado por FIXTURE_ORDER (null si no jugado)
+    // Mantiene nulls para que los índices coincidan con pronosticos_grupos
+    DATA.resultados_grupos=FIXTURE_ORDER.map(([local,visita])=>{
+      const key=`${local}|${visita}`;
+      return liveRes.resultados[key]||null;
+    });
+
     DATA.lastUpdate=liveRes.lastUpdate;
 
   }catch(err){
@@ -1132,7 +1407,7 @@ async function loadLiveData(){
   setTimeout(()=>buildChart(DATA.players),50);
 }
 
-// Load live data on start, then refresh every 5 minutes
+// Load on start, refresh every 5 minutes
 loadLiveData();
 setInterval(loadLiveData, 5*60*1000);
 </script>
