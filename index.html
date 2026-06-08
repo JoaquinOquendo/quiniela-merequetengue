@@ -512,24 +512,23 @@ function ini(n){return n.trim().charAt(0).toUpperCase();}
 const COLORS=["#006847","#CE1126","#FFD700","#3CAC3B","#FF6B35","#8B5CF6","#14B8A6","#EC4899","#F97316","#64748B"];
 const DATA={
   lastUpdate:"11 Jun 2026 · 00:00",
-  // Solo participantes reales por ahora — se agregan conforme se registren
   players:[
-    {name:"Joaquin",  camp_pick:"México",   pos_picks:{p1:"México",   p2:"Argentina", sf1:"Brasil",  sf2:"Francia"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
-    {name:"Christian",camp_pick:"Argentina",pos_picks:{p1:"Argentina",p2:"México",    sf1:"Francia", sf2:"Brasil"},  grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
+    {name:"Joaquin",       camp_pick:"México",   pos_picks:{p1:"México",   p2:"Argentina", sf1:"Brasil",  sf2:"Francia"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
+    {name:"Christian",     camp_pick:"Argentina",pos_picks:{p1:"Argentina",p2:"México",    sf1:"Francia", sf2:"Brasil"},  grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
+    {name:"Vito VIllalobos",camp_pick:"Brasil",  pos_picks:{p1:"Brasil",   p2:"Argentina", sf1:"México",  sf2:"Francia"}, grp:0,oct:0,qf:0,sf:0,fin:0,camp:0,prem:0,total:0},
   ],
-  // Premios: solo votos reales de Joaquin y Christian — actualizar cuando se registren los demás
   premios:[
-    {icon:"⚽",cat:"Bota de Oro",  player_picks:{Joaquin:"Haaland",Christian:"Lautaro"},  votos:[{n:"Haaland",c:1},{n:"Lautaro",c:1}]},
-    {icon:"★", cat:"Balón de Oro", player_picks:{Joaquin:"Vinicius Jr.",Christian:"Bellingham"},votos:[{n:"Vinicius Jr.",c:1},{n:"Bellingham",c:1}]},
-    {icon:"◉", cat:"Mejor Arquero",player_picks:{Joaquin:"Courtois",Christian:"Courtois"},votos:[{n:"Courtois",c:2}]},
-    {icon:"◈", cat:"Mejor Novato", player_picks:{Joaquin:"Endrick",Christian:"Yamal"},   votos:[{n:"Endrick",c:1},{n:"Yamal",c:1}]},
+    {icon:"⚽",cat:"Bota de Oro",  player_picks:{"Joaquin":"Haaland","Christian":"Lautaro","Vito VIllalobos":"Haaland"},  votos:[{n:"Haaland",c:2},{n:"Lautaro",c:1}]},
+    {icon:"★", cat:"Balón de Oro", player_picks:{"Joaquin":"Vinicius Jr.","Christian":"Bellingham","Vito VIllalobos":"Vinicius Jr."},votos:[{n:"Vinicius Jr.",c:2},{n:"Bellingham",c:1}]},
+    {icon:"◉", cat:"Mejor Arquero",player_picks:{"Joaquin":"Courtois","Christian":"Courtois","Vito VIllalobos":"Courtois"},votos:[{n:"Courtois",c:3}]},
+    {icon:"◈", cat:"Mejor Novato", player_picks:{"Joaquin":"Endrick","Christian":"Yamal","Vito VIllalobos":"Yamal"},   votos:[{n:"Yamal",c:2},{n:"Endrick",c:1}]},
   ],
-  // Partidos con fecha y hora en hora de México (CDMX = ET-1)
   partidos:[
     {grupo:"Grupo A",hora:"Jun 11 · 14:00 CDMX",local:"México",visitante:"Sudáfrica",resultado:null,
      pronosticos:[
        {nombre:"Joaquin",local:2,visitante:0},
        {nombre:"Christian",local:2,visitante:1},
+       {nombre:"Vito",local:2,visitante:2},
      ]},
     {grupo:"Grupo A",hora:"Jun 11 · 21:00 CDMX",local:"Corea del Sur",visitante:"Chequia",resultado:null,
      pronosticos:[]},
@@ -539,6 +538,7 @@ const DATA={
      pronosticos:[
        {nombre:"Joaquin",local:2,visitante:1},
        {nombre:"Christian",local:1,visitante:0},
+       {nombre:"Vito",local:1,visitante:1},
      ]},
     {grupo:"Grupo A",hora:"Jun 24 · 20:00 CDMX",local:"Chequia",visitante:"México",resultado:null,
      pronosticos:[]},
@@ -547,10 +547,10 @@ const DATA={
   ],
   // Historial vacío — el torneo empieza el 11 de junio, se llena automáticamente
   historial:[],
-  // Pronósticos de grupos — solo Joaquin y Christian por ahora
   pronosticos_grupos:[
-    {nombre:"Joaquin",  partidos:[[2,1],[1,0],[2,0],[0,1],[1,1],[0,1],[2,0],[1,0],[3,1],[2,0],[1,2],[0,0],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,1],[2,0],[1,0],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[2,1],[1,0],[0,1],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,1],[2,0],[1,2],[3,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[0,1],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[3,0],[1,0],[2,1],[0,1],[1,0],[2,1]]},
-    {nombre:"Christian",partidos:[[1,0],[2,1],[1,0],[1,1],[2,0],[1,1],[1,0],[2,1],[2,0],[1,0],[2,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,1],[1,0],[2,1],[1,0],[2,1],[1,0],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[2,0],[1,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[2,0],[2,0],[1,0],[2,1],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,0]]},
+    {nombre:"Joaquin",       partidos:[[2,1],[1,0],[2,0],[0,1],[1,1],[0,1],[2,0],[1,0],[3,1],[2,0],[1,2],[0,0],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,1],[2,0],[1,0],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[2,1],[1,0],[0,1],[3,0],[1,1],[2,0],[0,1],[2,1],[1,0],[3,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,1],[2,0],[1,2],[3,1],[2,0],[0,1],[2,1],[1,0],[3,1],[1,0],[2,0],[0,1],[2,1],[1,0],[2,0],[1,1],[2,0],[0,1],[3,0],[1,0],[2,1],[0,1],[1,0],[2,1]]},
+    {nombre:"Christian",     partidos:[[1,0],[2,1],[1,0],[1,1],[2,0],[1,1],[1,0],[2,1],[2,0],[1,0],[2,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,1],[1,0],[2,1],[1,0],[2,1],[1,0],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[2,0],[1,1],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[2,0],[2,0],[1,0],[2,1],[2,0],[1,0],[1,1],[2,0],[1,0],[2,1],[1,0],[1,0],[1,1],[2,0],[1,0],[1,0],[2,1],[1,0],[1,0],[2,0],[2,1],[1,0],[1,1],[2,0],[1,0]]},
+    {nombre:"Vito VIllalobos",partidos:[[2,2],[1,0],[2,2],[1,1],[1,2],[0,0],[2,2],[1,0],[3,2],[2,2],[1,1],[0,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[1,0],[2,2],[1,0],[2,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[2,2],[1,0],[0,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[1,0],[2,2],[1,0],[1,0],[2,2],[1,1],[3,2],[2,2],[0,0],[2,2],[1,0],[3,2],[1,0],[2,2],[0,0],[2,2],[1,0],[2,2],[1,0],[2,2],[0,0],[3,2],[1,0],[2,2],[0,0],[1,0],[2,2]]},
   ],
   // Resultados vacíos — se llenan con la API automáticamente
   resultados_grupos:[],
@@ -715,12 +715,15 @@ function render(){
       <span class="v-n-ed">${v.c}</span></div>`).join('')}</div>`;
   }).join('');
 
-  // Partidos
+  // Partidos — solo mostrar los pendientes (no jugados)
   const pl=document.getElementById('partidosList');
-  if(!DATA.partidos?.length){
-    pl.innerHTML='<div class="partido-ed" style="padding:2rem;display:block;text-align:center"><span style="font-family:Syne;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)">Sin partidos hoy</span></div>';
+  const pendientes=DATA.partidos.filter(p=>!p.resultado);
+  const jugados=DATA.partidos.filter(p=>p.resultado).slice(-2);
+  const display=[...jugados,...pendientes].slice(0,6);
+  if(!display.length){
+    pl.innerHTML='<div class="partido-ed" style="padding:2rem;display:block;text-align:center"><span style="font-family:Syne;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)">Sin partidos próximos</span></div>';
   } else {
-    pl.innerHTML=DATA.partidos.map(p=>{
+    pl.innerHTML=display.map(p=>{
       const chips=p.pronosticos.map(pr=>{
         let cls='cde';if(pr.local>pr.visitante)cls='che';else if(pr.visitante>pr.local)cls='cae';
         return`<span class="chip-ed ${cls}">${e(pr.nombre)} ${pr.local}-${pr.visitante}</span>`;
@@ -730,7 +733,7 @@ function render(){
         <div class="pe-group"><div class="pe-group-lbl">Grupo</div><div class="pe-group-name">${e(p.grupo.replace('Grupo ',''))}</div></div>
         <div class="pe-team"><div class="pe-team-name">${e(p.local)}</div></div>${ctr}
         <div class="pe-team right"><div class="pe-team-name">${e(p.visitante)}</div></div>
-        <div class="pe-prono"><div class="pe-prono-lbl">Pronósticos</div>${chips}</div></div>`;
+        <div class="pe-prono"><div class="pe-prono-lbl">Pronósticos</div>${chips||'<span style="font-size:.6rem;color:rgba(255,255,255,.2);font-family:Syne;letter-spacing:.1em">—</span>'}</div></div>`;
     }).join('');
   }
 
@@ -826,37 +829,33 @@ function renderH2H(){
 
 // ── HEATMAP ──────────────────────────────────────────────
 function renderHeatmap(){
-  if(!DATA.partidos||!DATA.partidos.length){
-    document.getElementById('heatmapWrap').innerHTML='<div style="padding:2rem;font-family:Syne;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);background:var(--ink2)">Sin partidos para mostrar</div>';
+  const pendientes=DATA.partidos.filter(p=>!p.resultado);
+  if(!pendientes.length){
+    document.getElementById('heatmapWrap').innerHTML='<div style="padding:2rem;font-family:Syne;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);background:var(--ink2)">Sin partidos próximos</div>';
     return;
   }
   const players=DATA.players.map(p=>p.name);
-  // Count how many players picked each result per match
   let html='';
-  DATA.partidos.forEach((partido,pi)=>{
-    // Count picks
+  pendientes.slice(0,6).forEach((partido)=>{
     let picks={};
     partido.pronosticos.forEach(pr=>{const k=`${pr.local}-${pr.visitante}`;picks[k]=(picks[k]||[]);picks[k].push(pr.nombre);});
-    const maxCount=Math.max(...Object.values(picks).map(a=>a.length));
-    // Header row
     html+=`<div class="hm-row" style="grid-template-columns:160px repeat(${players.length},1fr);margin-bottom:1px;">
       <div class="hm-partido-lbl">${e(partido.local)} <span>vs</span> ${e(partido.visitante)}</div>
       ${players.map(n=>`<div class="hm-name-cell">${e(n.substring(0,5))}</div>`).join('')}
     </div>`;
-    // Picks row
     html+=`<div class="hm-row" style="grid-template-columns:160px repeat(${players.length},1fr);margin-bottom:4px;">
       <div style="background:var(--ink2);padding:.4rem .75rem;display:flex;align-items:center;">
         <span style="font-family:Syne;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25)">${e(partido.hora)}</span>
       </div>
       ${players.map(name=>{
-        const pr=partido.pronosticos.find(p=>p.nombre===name);
+        const pr=partido.pronosticos.find(p=>p.nombre===name||p.nombre===name.split(' ')[0]);
         if(!pr)return`<div class="hm-cell" style="background:var(--ink2)"><div class="hm-val" style="opacity:.2">—</div></div>`;
         const k=`${pr.local}-${pr.visitante}`;
         const count=picks[k]?.length||1;
-        const heat=count/players.length;
+        const heat=count/Math.max(partido.pronosticos.length,1);
         const bg=heat>=0.6?'rgba(0,104,71,0.7)':heat>=0.4?'rgba(0,104,71,0.35)':heat>=0.25?'rgba(255,209,0,0.25)':'rgba(206,17,38,0.35)';
-        return`<div class="hm-cell" style="background:${bg};background:${bg}">
-          <div><div class="hm-val">${pr.local}-${pr.visitante}</div><div class="hm-sub">${count}/${players.length}</div></div>
+        return`<div class="hm-cell" style="background:${bg}">
+          <div><div class="hm-val">${pr.local}-${pr.visitante}</div><div class="hm-sub">${count}/${partido.pronosticos.length}</div></div>
         </div>`;
       }).join('')}
     </div>`;
