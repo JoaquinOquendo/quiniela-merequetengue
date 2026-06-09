@@ -609,7 +609,8 @@ const DATA={
   ],
   // Resultados vacíos — se llenan con la API automáticamente
   resultados_grupos:[],
-  // México juega partidos idx 0,1,2 en el Grupo A (vs Sudáfrica, Corea del Sur, Chequia)
+  // México en grupos: idx 0=vs Corea (local), 1=vs Sudáfrica (local), 2=vs Chequia (local)
+  // En FIXTURE_ORDER_CAPTURA: Grupo A ocupa índices 0-5
   mexico_partidos:[{idx:0,esLocal:true},{idx:1,esLocal:true},{idx:2,esLocal:true}],
 };
 
@@ -824,7 +825,7 @@ function render(){
     pl.innerHTML='<div class="partido-ed" style="padding:2rem;display:block;text-align:center"><span style="font-family:Syne;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)">Sin partidos próximos</span></div>';
   } else {
     pl.innerHTML=displayFinal.map(p=>{
-      const chips=p.pronosticos.map(pr=>{
+      const chips=p.pronosticos.filter(pr=>pr.nombre&&!pr.nombre.includes(',')&&pr.nombre.length<30).map(pr=>{
         let cls='cde';if(pr.local>pr.visitante)cls='che';else if(pr.visitante>pr.local)cls='cae';
         return`<span class="chip-ed ${cls}">${e(pr.nombre)} ${pr.local}-${pr.visitante}</span>`;
       }).join('');
@@ -1290,21 +1291,32 @@ function parseCaptura(csv){
   // +196: 2 cols for final
   // +198: 1 col campeón
   // +199: 4 cols premios (Bota,Balón,Arquero,Novato)
-  const COL_CAMP = 198; // 0-indexed from col 0 = Participante
-  const COL_BOTA = 199;
-  const COL_BALON = 200;
-  const COL_ARQ = 201;
-  const COL_NOV = 202;
+  // Find column indices dynamically from header — immune to sheet column shifts
+  const header=rows[hIdx];
+  const COL_CAMP  = header.indexOf('CAMPEÓN');
+  const COL_BOTA  = header.indexOf('Bota');
+  const COL_BALON = header.indexOf('Balón');
+  const COL_ARQ   = header.indexOf('Arquero');
+  const COL_NOV   = header.indexOf('Novato');
+  const COL_SF1   = header.indexOf('SF1');
+  const COL_SF2   = header.indexOf('SF2');
+  const COL_FIN1  = header.indexOf('Fin1');
+  const COL_FIN2  = header.indexOf('Fin2');
 
   const premCats=['Bota de Oro','Balón de Oro','Mejor Arquero','Mejor Novato'];
   const premIcons=['⚽','★','◉','◈'];
   const premPicksMap=[{},{},{},{}];
   const premVotosMap=[{},{},{},{}];
 
+  // Only process rows that are real participants — prevents player names
+  // from octavos/cuartos picks bleeding into pronósticos
+  const validNames=DATA.players.map(p=>p.name);
+
   for(let i=hIdx+1;i<rows.length;i++){
     const r=rows[i];
     const name=(r[0]||'').trim();
-    if(!name||name==='Participante')continue;
+    if(!name)continue;
+    if(!validNames.includes(name))continue; // skip non-participant rows
 
     // 72 group stage pronosticos
     const partidos=[];
@@ -1316,32 +1328,29 @@ function parseCaptura(csv){
     result.pronosticos_grupos.push({nombre:name,partidos});
 
     // Build partidos_pronosticos index (uses CAPTURA order = sheet column order)
+    // Only for cols 1-144 (72 group stage matches × 2)
     FIXTURE_ORDER_CAPTURA.forEach(([local,visita],idx)=>{
+      if(idx>=72)return; // safety: only group stage
       const key=`${local}|${visita}`;
       if(!result.partidos_pronosticos[key]) result.partidos_pronosticos[key]=[];
+      const L=partidos[idx][0], V=partidos[idx][1];
+      // Skip if not valid scores (e.g. team names leaked into wrong col)
+      if(isNaN(L)||isNaN(V))return;
       result.partidos_pronosticos[key].push({
         nombre:name,
-        local:partidos[idx][0],
-        visitante:partidos[idx][1],
+        local:L,
+        visitante:V,
       });
     });
 
     // Campeón y pos_picks (cols 144-167 = clasificados 1º/2º de grupos A-L)
-    const camp=(r[COL_CAMP]||'').trim();
+    const camp=(r[COL_CAMP]||'').replace(/[\t\r\n]+/g,' ').trim();
 
-    // SF1-SF4 → cols 192-195 (0-indexed from Participante col)
-    // In the header row they are SF1,SF2,SF3,SF4
-    // Find SF columns dynamically
-    const headerRow=rows[hIdx];
-    const sf1Idx=headerRow.indexOf('SF1');
-    const sf2Idx=headerRow.indexOf('SF2');
-    const fin1Idx=headerRow.indexOf('Fin1');
-    const fin2Idx=headerRow.indexOf('Fin2');
-
-    const sf1=(sf1Idx>=0?(r[sf1Idx]||'').trim():'—');
-    const sf2=(sf2Idx>=0?(r[sf2Idx]||'').trim():'—');
-    const fin1=(fin1Idx>=0?(r[fin1Idx]||'').trim():'—');
-    const fin2=(fin2Idx>=0?(r[fin2Idx]||'').trim():'—');
+    const clean=v=>(v||'').replace(/[\t\r\n]+/g,' ').trim();
+    const sf1  = COL_SF1>=0  ? clean(r[COL_SF1])  : '—';
+    const sf2  = COL_SF2>=0  ? clean(r[COL_SF2])  : '—';
+    const fin1 = COL_FIN1>=0 ? clean(r[COL_FIN1]) : '—';
+    const fin2 = COL_FIN2>=0 ? clean(r[COL_FIN2]) : '—';
 
     result.players_captura.push({
       name,
@@ -1351,7 +1360,8 @@ function parseCaptura(csv){
 
     // Premios
     [COL_BOTA,COL_BALON,COL_ARQ,COL_NOV].forEach((col,pi)=>{
-      const voto=(r[col]||'').trim();
+      // Strip tabs, newlines, extra spaces from Excel formatting
+      const voto=(r[col]||'').replace(/[\t\r\n]+/g,' ').trim();
       if(voto){
         premPicksMap[pi][name]=voto;
         premVotosMap[pi][voto]=(premVotosMap[pi][voto]||0)+1;
