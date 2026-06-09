@@ -627,16 +627,19 @@ function calcEsp(){
   const pros=DATA.pronosticos_grupos;
   const mex=DATA.mexico_partidos||[];
 
-  // Only compute over played matches (non-null)
+  // Only compute over played matches (non-null) for exactos/maxG
+  // But mexGF uses ALL 72 pronosticos (total goles dados a México en todo el torneo)
   const stats=pros.map(p=>{
     let exactos=0,mexGF=0,maxG=0,maxGdet='';
     p.partidos.forEach((pro,i)=>{
-      const real=res[i];if(!real)return;
-      if(pro[0]===real[0]&&pro[1]===real[1])exactos++;
+      const real=res[i];
+      if(real){
+        if(pro[0]===real[0]&&pro[1]===real[1])exactos++;
+      }
       const g=pro[0]+pro[1];if(g>maxG){maxG=g;maxGdet=`${pro[0]}-${pro[1]}`;}
     });
+    // mexGF: suma de todos los goles pronosticados para México (jugados o no)
     mex.forEach(mx2=>{
-      const real=res[mx2.idx];if(!real)return;
       const pro=p.partidos[mx2.idx];if(!pro)return;
       mexGF+=mx2.esLocal?pro[0]:pro[1];
     });
@@ -718,25 +721,42 @@ function calcRacha(){
 }
 
 // ── AMBICIOSO ────────────────────────────────────────────
+// Usa los mismos partidos que muestra la sección Juegos (día más próximo)
 function calcAmbicioso(){
-  if(!DATA.partidos||!DATA.partidos.length)return null;
+  // Reutilizar la misma lógica de filtro por fecha que usa Juegos
+  function parseFechaPartido(hora){
+    try{const part=hora.split('·')[0].trim();return new Date(part+' 2026');}
+    catch(e){return new Date(9999,0,1);}
+  }
+  const pendientes=DATA.partidos.filter(p=>!p.resultado);
+  const fechas=[...new Set(pendientes.map(p=>parseFechaPartido(p.hora).toDateString()))].sort((a,b)=>new Date(a)-new Date(b));
+  const fechaTarget=fechas[0]||null;
+  // Partidos del día más próximo — los mismos que Juegos
+  const partidosDelDia=fechaTarget
+    ? pendientes.filter(p=>parseFechaPartido(p.hora).toDateString()===fechaTarget)
+    : pendientes.slice(0,4);
+
+  if(!partidosDelDia.length)return null;
+
+  // Marcador más goleador
   let topGoles=-1,topName='—',topScore='—',topMatch='—';
-  DATA.partidos.forEach(p=>{
+  partidosDelDia.forEach(p=>{
     p.pronosticos.forEach(pr=>{
       const g=pr.local+pr.visitante;
       if(g>topGoles){topGoles=g;topName=pr.nombre;topScore=`${pr.local}-${pr.visitante}`;topMatch=`${p.local} vs ${p.visitante}`;}
     });
   });
-  // Most unique pick (least common result prediction)
+
+  // Pronóstico más solitario (el que nadie más cree)
   let counts={};
-  DATA.partidos.forEach(p=>{
+  partidosDelDia.forEach(p=>{
     p.pronosticos.forEach(pr=>{
       const k=`${p.local}-${p.visitante}:${pr.local}-${pr.visitante}`;
       counts[k]=(counts[k]||0)+1;
     });
   });
   let minCount=99,rareName='—',rareScore='—',rareMatch='—';
-  DATA.partidos.forEach(p=>{
+  partidosDelDia.forEach(p=>{
     p.pronosticos.forEach(pr=>{
       const k=`${p.local}-${p.visitante}:${pr.local}-${pr.visitante}`;
       if(counts[k]<minCount){minCount=counts[k];rareName=pr.nombre;rareScore=`${pr.local}-${pr.visitante}`;rareMatch=`${p.local} vs ${p.visitante}`;}
