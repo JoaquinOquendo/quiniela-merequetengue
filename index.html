@@ -1326,6 +1326,8 @@ function parseCaptura(csv){
   const COL_NOV   = header.indexOf('Novato');
   const COL_SF1   = header.indexOf('SF1');
   const COL_SF2   = header.indexOf('SF2');
+  const COL_SF3   = header.indexOf('SF3');
+  const COL_SF4   = header.indexOf('SF4');
   const COL_FIN1  = header.indexOf('Fin1');
   const COL_FIN2  = header.indexOf('Fin2');
 
@@ -1373,15 +1375,25 @@ function parseCaptura(csv){
     const camp=(r[COL_CAMP]||'').replace(/[\t\r\n]+/g,' ').trim();
 
     const clean=v=>(v||'').replace(/[\t\r\n]+/g,' ').trim();
-    const sf1  = COL_SF1>=0  ? clean(r[COL_SF1])  : '—';
-    const sf2  = COL_SF2>=0  ? clean(r[COL_SF2])  : '—';
+    const sf1  = COL_SF1>=0  ? clean(r[COL_SF1])  : '';
+    const sf2  = COL_SF2>=0  ? clean(r[COL_SF2])  : '';
+    const sf3  = COL_SF3>=0  ? clean(r[COL_SF3])  : '';
+    const sf4  = COL_SF4>=0  ? clean(r[COL_SF4])  : '';
     const fin1 = COL_FIN1>=0 ? clean(r[COL_FIN1]) : '—';
     const fin2 = COL_FIN2>=0 ? clean(r[COL_FIN2]) : '—';
+
+    // Semifinalistas eliminados = los 4 semifinalistas menos los 2 finalistas
+    const allSemis=[sf1,sf2,sf3,sf4].filter(s=>s&&s!==fin1&&s!==fin2);
 
     result.players_captura.push({
       name,
       camp_pick:camp,
-      pos_picks:{p1:camp,p2:fin1===camp?fin2:fin1,sf1:sf1,sf2:sf2},
+      pos_picks:{
+        p1:camp,
+        p2:fin1===camp?fin2:fin1,
+        sf1:allSemis[0]||'—',
+        sf2:allSemis[1]||'—',
+      },
     });
 
     // Premios
