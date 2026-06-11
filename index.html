@@ -321,6 +321,126 @@ tr:nth-child(1) .pt{color:#FFD700;}tr:nth-child(2) .pt{color:#aaa;}tr:nth-child(
   .racha-grid{grid-template-columns:1fr;}
   .lb-editorial thead th:nth-child(n+4),.lb-editorial td:nth-child(n+4){display:none;}
 }
+
+/* ══════════════════════════════════════════════════════════
+   DESIGN ELEVATION — polish layer (no JS data logic touched)
+   ══════════════════════════════════════════════════════════ */
+
+/* selection + focus + scrollbar */
+::selection{background:var(--mex-g);color:#fff;}
+:focus-visible{outline:2px solid var(--mex-r);outline-offset:3px;}
+::-webkit-scrollbar{width:10px;height:8px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:#C9BFAF;border:2px solid var(--cream);border-radius:6px;}
+::-webkit-scrollbar-thumb:hover{background:var(--ink2);}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* hero entrance */
+.hero-title .line1,.hero-title .line2,.hero-title .line3{opacity:0;transform:translateY(30px);animation:hero-line .8s cubic-bezier(.22,1,.36,1) forwards;}
+.hero-title .line2{animation-delay:.12s;}
+.hero-title .line3{animation-delay:.24s;}
+.hero-meta{opacity:0;animation:hero-fade .8s ease .5s forwards;}
+.hero-year{opacity:0;animation:hero-fade 1s ease .35s forwards;}
+@keyframes hero-line{to{opacity:1;transform:none;}}
+@keyframes hero-fade{to{opacity:1;}}
+.hero-year{transition:none;}
+
+/* micro-interactions — hover lift on cards (desktop only) */
+.pod-card,.prem-card,.esp-ed,.racha-card,.amb-card,.partido-ed{transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s cubic-bezier(.22,1,.36,1),border-color .2s;}
+@media(hover:hover){
+  .esp-ed:hover,.racha-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,10,10,.1);}
+  .pod-card:hover,.prem-card:hover,.amb-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(10,10,10,.18);}
+  .partido-ed:hover{border-color:var(--ink);}
+  .pn{transition:color .15s;}
+  .h2h-select:hover{background:var(--mex-g);}
+}
+.h2h-select{transition:background .2s;}
+
+/* nav polish — subtle glass on badge */
+.nav-badge{backdrop-filter:blur(6px);}
+
+/* table: number tabular alignment */
+.pt,.ph,.hero-meta-num,.pod-pts-num,.racha-num,.amb-score,.h2h-side-pts,.ps-val{font-variant-numeric:tabular-nums;}
+
+/* ── MOBILE: partido card restructure ── */
+@media(max-width:768px){
+  .partido-ed{
+    grid-template-columns:62px 1fr auto;
+    grid-template-areas:
+      "group team1 center"
+      "group team2 center"
+      "prono prono prono";
+  }
+  .pe-group{grid-area:group;min-width:0;padding:.75rem .5rem;}
+  .pe-group-name{font-size:.68rem;}
+  .pe-team{grid-area:team1;padding:.7rem 1rem .15rem;}
+  .pe-team.right{grid-area:team2;justify-content:flex-start;padding:.15rem 1rem .7rem;}
+  .pe-team.right .pe-team-name{text-align:left;}
+  .pe-team-name{font-size:.88rem;}
+  .pe-center{grid-area:center;min-width:64px;padding:.5rem .85rem;}
+  .pe-score{font-size:1.3rem;}
+  .pe-hora{font-size:.55rem;text-align:center;line-height:1.5;}
+  .pe-prono{grid-area:prono;min-width:0;padding:.6rem 1rem .7rem;}
+  .chip-ed{font-size:.62rem;padding:.2rem .5rem;}
+}
+
+/* ── MOBILE: heatmap horizontal scroll instead of crush ── */
+@media(max-width:768px){
+  #heatmapWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+  #heatmapWrap .hm-row{min-width:680px;}
+  #heatmapWrap .hm-legend{min-width:680px;flex-wrap:wrap;gap:.5rem;}
+  .heatmap-hint{display:block;}
+}
+.heatmap-hint{display:none;font-family:'Syne',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+
+/* ── MOBILE: H2H controls stack ── */
+@media(max-width:768px){
+  .h2h-controls{flex-direction:column;align-items:stretch;gap:.5rem;}
+  .h2h-select{width:100%;padding:.85rem 1rem;font-size:.8rem;}
+  .h2h-vs-lbl{text-align:center;}
+}
+
+/* ── MOBILE: perfil modal breathing room ── */
+@media(max-width:480px){
+  .perfil-modal{padding:.75rem;}
+  .perfil-header{padding:1.25rem;}
+  .perfil-initial{width:48px;height:48px;font-size:1.4rem;}
+  .perfil-nombre{font-size:1.4rem;}
+  .perfil-body{padding:1rem;}
+  .perfil-stats{gap:2px;}
+  .ps-cell{padding:.75rem .5rem;}
+  .ps-val{font-size:1.1rem;}
+}
+
+/* ── MOBILE: tap target sizes ── */
+@media(max-width:768px){
+  .pn{padding:.25rem 0;display:inline-block;}
+  .perfil-close{width:44px;height:44px;}
+}
+
+/* ── MOBILE: overflow fixes ── */
+@media(max-width:768px){
+  .hero-tag{font-size:.55rem;letter-spacing:.12em;line-height:1.6;flex-wrap:wrap;}
+  .hero-meta{gap:.9rem;}
+  .hero-meta-num{font-size:1.25rem;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .hero-meta-lbl{font-size:.6rem;}
+  .sec-title{font-size:clamp(1.65rem,8vw,3rem);overflow-wrap:anywhere;}
+  .sec-num{font-size:.58rem;}
+  .amb-score{font-size:2.6rem;}
+  .amb-bg{font-size:5rem;}
+}
+
+/* reduced motion — accessibility */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  html{scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .hero-title .line1,.hero-title .line2,.hero-title .line3,.hero-meta,.hero-year{opacity:1;transform:none;animation:none;}
+}
+
 </style>
 </head>
 <body>
@@ -473,6 +593,7 @@ tr:nth-child(1) .pt{color:#FFD700;}tr:nth-child(2) .pt{color:#aaa;}tr:nth-child(
   <!-- 08 MAPA DE CALOR -->
   <div class="section">
     <div class="sec-header"><div class="sec-num">08 ——</div><div class="sec-title">Calor</div><div class="sec-sub">Mapa de<br>pronósticos</div></div>
+    <div class="heatmap-hint">← Desliza para ver todos →</div>
     <div class="heatmap-wrap" id="heatmapWrap"></div>
   </div>
 
@@ -1552,6 +1673,20 @@ async function loadLiveData(){
 // Load on start, refresh every 5 minutes
 loadLiveData();
 setInterval(loadLiveData, 5*60*1000);
+
+// ── Scroll reveal (visual only — does not touch data logic) ──
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.section').forEach(s=>{
+    s.classList.add('reveal');
+    io.observe(s);
+  });
+})();
 </script>
 </body>
 </html>
