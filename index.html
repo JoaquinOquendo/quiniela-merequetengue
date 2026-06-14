@@ -1294,7 +1294,17 @@ async function loadLiveData(){
       DATA.players=DATA.players.filter(p=>livePlayers.some(lp=>lp.name===p.name));
     }
     const liveRes=parseResultados(csvRes);
-    DATA.partidos.forEach(p=>{const key=`${p.local}|${p.visitante}`;if(liveRes.resultados[key])p.resultado=liveRes.resultados[key];});
+    DATA.partidos.forEach(p=>{
+      const key=`${p.local}|${p.visitante}`;
+      const keyAlt=`${p.visitante}|${p.local}`;
+      if(liveRes.resultados[key]){
+        p.resultado=liveRes.resultados[key];
+      } else if(liveRes.resultados[keyAlt]){
+        // Sheet tiene los equipos en orden inverso — swap del marcador
+        const r=liveRes.resultados[keyAlt];
+        p.resultado=[r[1],r[0]];
+      }
+    });
     DATA.resultados_grupos=FIXTURE_ORDER_CAPTURA.map(([local,visita])=>liveRes.resultados[`${local}|${visita}`]||null);
     DATA.lastUpdate=liveRes.lastUpdate;
   }catch(err){console.warn('Live fetch failed, usando datos estáticos.',err);}
