@@ -978,8 +978,22 @@ function parseFechaPartido(hora){try{return new Date(hora.split('·')[0].trim()+
 // ── DAY SELECTION (Juegos section) ───────────────────────
 let currentDayOffset=0;
 
+// "Hoy" siempre se calcula en hora de Ciudad de México (CDMX), sin importar
+// la zona horaria del dispositivo del usuario. Así alguien viendo la página
+// desde Australia, España, etc. ve el mismo "Ayer/Hoy/Mañana" que todos los
+// demás, basado en el calendario del torneo (que está en CDMX).
+function getTodayCDMX(){
+  const parts=new Intl.DateTimeFormat('en-US',{
+    timeZone:'America/Mexico_City',year:'numeric',month:'2-digit',day:'2-digit'
+  }).formatToParts(new Date());
+  const map={};parts.forEach(p=>map[p.type]=p.value);
+  // Construct as a local Date at midnight so toDateString() comparisons
+  // against parseFechaPartido (which also builds local Dates) line up.
+  return new Date(parseInt(map.year),parseInt(map.month)-1,parseInt(map.day));
+}
+
 function getPartidosByDay(offset){
-  const t=new Date();t.setDate(t.getDate()+offset);const ts=t.toDateString();
+  const t=getTodayCDMX();t.setDate(t.getDate()+offset);const ts=t.toDateString();
   return DATA.partidos.filter(p=>parseFechaPartido(p.hora).toDateString()===ts);
 }
 
