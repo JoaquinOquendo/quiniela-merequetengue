@@ -603,22 +603,11 @@ tr:nth-child(3) .pt{color:#cd7f32;}
       <table>
         <thead><tr>
           <th>#</th><th>Participante</th><th>Total</th><th>Dif</th>
-          <th>Grp</th><th>Oct</th><th>Cto</th><th>SF</th><th>Fin</th><th>Camp</th><th>Prem</th>
+          <th>Partidos</th><th>Oct</th><th>Cto</th><th>SF</th><th>Fin</th><th>Camp</th><th>Prem</th>
         </tr></thead>
         <tbody id="leaderboard"></tbody>
       </table>
     </div>
-  </div>
-
-  <div class="strip"><div class="strip-g" style="flex:1"></div><div class="strip-w" style="flex:1"></div><div class="strip-r" style="flex:1"></div></div>
-
-  <div class="section" id="r32Section">
-    <div class="sec-header">
-      <div class="sec-num">16AVOS ——</div>
-      <div class="sec-title">Ronda 32</div>
-      <div class="sec-sub">Puntos de<br>la Ronda de 32</div>
-    </div>
-    <div id="r32Wrap"></div>
   </div>
 
   <div class="strip"><div class="strip-r" style="flex:1"></div><div class="strip-w" style="flex:1"></div><div class="strip-g" style="flex:1"></div></div>
@@ -966,6 +955,23 @@ const PARTIDOS_COMPLETOS=[
   {grupo:"Grupo K",hora:"Jun 27 · 17:30 CDMX",local:"Congo DR",visitante:"Uzbekistán",resultado:null,pronosticos:[]},
   {grupo:"Grupo J",hora:"Jun 27 · 20:00 CDMX",local:"Jordania",visitante:"Argentina",resultado:null,pronosticos:[]},
   {grupo:"Grupo J",hora:"Jun 27 · 20:00 CDMX",local:"Argelia",visitante:"Austria",resultado:null,pronosticos:[]},
+  // ── RONDA DE 32 (16avos) — horarios en CDMX (ET − 1h) ──
+  {grupo:"16avos",r32:"R32-01",hora:"Jun 28 · 14:00 CDMX",local:"Sudáfrica",visitante:"Canadá",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-02",hora:"Jun 29 · 12:00 CDMX",local:"Brasil",visitante:"Japón",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-03",hora:"Jun 29 · 15:30 CDMX",local:"Alemania",visitante:"Paraguay",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-04",hora:"Jun 29 · 20:00 CDMX",local:"Países Bajos",visitante:"Marruecos",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-05",hora:"Jun 30 · 12:00 CDMX",local:"Costa de Marfil",visitante:"Noruega",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-06",hora:"Jun 30 · 16:00 CDMX",local:"Francia",visitante:"Suecia",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-07",hora:"Jun 30 · 20:00 CDMX",local:"México",visitante:"Ecuador",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-08",hora:"Jul 1 · 11:00 CDMX",local:"Inglaterra",visitante:"R.D. Congo",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-09",hora:"Jul 1 · 15:00 CDMX",local:"Bélgica",visitante:"Senegal",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-10",hora:"Jul 1 · 19:00 CDMX",local:"Estados Unidos",visitante:"Bosnia",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-11",hora:"Jul 2 · 14:00 CDMX",local:"España",visitante:"Austria",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-12",hora:"Jul 2 · 18:00 CDMX",local:"Portugal",visitante:"Croacia",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-13",hora:"Jul 2 · 22:00 CDMX",local:"Suiza",visitante:"Argelia",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-14",hora:"Jul 3 · 13:00 CDMX",local:"Australia",visitante:"Egipto",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-15",hora:"Jul 3 · 17:00 CDMX",local:"Argentina",visitante:"Cabo Verde",resultado:null,pronosticos:[]},
+  {grupo:"16avos",r32:"R32-16",hora:"Jul 3 · 20:30 CDMX",local:"Colombia",visitante:"Ghana",resultado:null,pronosticos:[]},
 ];
 DATA.partidos=PARTIDOS_COMPLETOS.map(p=>Object.assign({},p,{pronosticos:[]}));
 
@@ -1290,7 +1296,7 @@ function buildPartidoCard(p){
     ?`<div class="pe-center"><div class="pe-score">${p.resultado[0]}—${p.resultado[1]}</div><div class="pe-vs">FT</div></div>`
     :`<div class="pe-center"><div class="pe-vs">VS</div><div class="pe-hora">${e(p.hora)}</div></div>`;
   return`<div class="partido-ed${p.resultado?' played':''}">
-    <div class="pe-group"><div class="pe-group-lbl">Grupo</div><div class="pe-group-name">${e(p.grupo.replace('Grupo ',''))}</div></div>
+    <div class="pe-group"><div class="pe-group-lbl">${p.r32?'Ronda':'Grupo'}</div><div class="pe-group-name">${e(p.r32?'16avos':p.grupo.replace('Grupo ',''))}</div></div>
     <div class="pe-team"><div class="pe-team-name">${e(p.local)}</div></div>${ctr}
     <div class="pe-team right"><div class="pe-team-name">${e(p.visitante)}</div></div>
     <div class="pe-prono"><div class="pe-prono-lbl">Pronósticos</div>${chips||'<span style="font-size:.6rem;color:rgba(255,255,255,.2);font-family:Syne;letter-spacing:.1em">—</span>'}</div></div>`;
@@ -1529,7 +1535,7 @@ function render(){
       <td><span class="rkbar ${rbC}"></span><span class="rk ${rC}">${rank}</span></td>
       <td><span class="pn" onclick="openModal('${e(p.name)}')">${e(p.name)}</span></td>
       <td><span class="pt">${p.total}</span></td><td>${dH}</td>
-      <td><span class="ph">${p.grp}</span></td><td><span class="ph">${p.oct}</span></td>
+      <td><span class="ph">${(p.grp||0)+(p.r32||0)}</span></td><td><span class="ph">${p.oct}</span></td>
       <td><span class="ph">${p.qf}</span></td><td><span class="ph">${p.sf}</span></td>
       <td><span class="ph">${p.fin}</span></td><td><span class="ph">${p.camp}</span></td>
       <td><span class="ph">${p.prem}</span></td></tr>`;
@@ -1649,10 +1655,10 @@ const CSV_RESULTADOS='https://docs.google.com/spreadsheets/d/e/2PACX-1vTvCD1bfQC
 const CSV_CAPTURA='https://docs.google.com/spreadsheets/d/e/2PACX-1vTvCD1bfQCnHnwsgNiRAokkQ0IA5zVuYpFUGOVc19AqYzjyvumseJaqcj1TFSjJAQ/pub?gid=1113171896&single=true&output=csv';
 // CAPTURA M (Ronda de 32) — formato largo: una fila por persona/partido, columna PUNTOS.
 const CSV_CAPTURA_R32='https://docs.google.com/spreadsheets/d/e/2PACX-1vQp14lZZQipyU_hJ0JZM2pdnAcZNgo2Ao9zauKhclHm5KrmIRcT3qwBOSPpML2UxuCjOIePe3E3_ISa/pub?gid=873900223&single=true&output=csv';
-// Alias de nombres de la captura R32 -> nombre canonico del dashboard
+// Alias de nombres de la captura R32 -> nombre canónico del dashboard
 const R32_ALIAS={'yousef':'Yous','yous':'Yous'};
-// Estado de la Ronda de 32 (se llena en loadLiveData)
-const R32={puntos:{},jugados:0,totalPartidos:16,partidos:[],cargado:false};
+// Estado de los puntos de partidos de eliminatoria (16avos y futuras rondas)
+const R32={puntos:{},cargado:false};
 
 function parseCSV(text){
   return text.trim().split('\n').map(row=>{
@@ -1671,9 +1677,11 @@ function normalizeName(n){
   return (n||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/\s+/g,' ');
 }
 
-// ── RONDA DE 32: parseo de la captura (formato largo) ────────
+// ── RONDA DE 32 / ELIMINATORIA: parseo de captura M (formato largo) ──
 // Columnas: Enviado,Quiniela,Nombre,Partido,Local,Visitante,Goles L,Goles V,Empate,Pasa,PUNTOS
-// Suma PUNTOS por persona (solo filas con puntaje numerico = partido ya calificado).
+// - Goles L / Goles V = PRONÓSTICO de cada persona (no el resultado oficial).
+// - PUNTOS = lo que ganó cada quien (suma por persona = puntos de eliminatoria).
+// - El RESULTADO OFICIAL del partido NO está aquí; viene del CSV RESULTADOS normal.
 function resolveR32(rawName){
   const norm=normalizeName(rawName);
   if(R32_ALIAS[norm]) return R32_ALIAS[norm];
@@ -1688,77 +1696,32 @@ function parseCapturaR32(csv){
   const header=rows[0];
   const iName=header.indexOf('Nombre');
   const iPart=header.indexOf('Partido');
-  const iLoc =header.indexOf('Local');
-  const iVis =header.indexOf('Visitante');
+  const iGL  =header.indexOf('Goles L');
+  const iGV  =header.indexOf('Goles V');
   const iPts =header.indexOf('PUNTOS');
   if(iName<0||iPts<0) return null;
   const puntos={};
-  const partidosMap={}; // R32-xx -> {local,visitante,jugado}
+  const pronos={};      // 'R32-XX' -> [{nombre,local,visitante}]
+  const calificado={};  // 'R32-XX' -> true si ya tiene PUNTOS numérico (partido jugado/calificado)
   for(let i=1;i<rows.length;i++){
     const r=rows[i];
     const name=resolveR32((r[iName]||'').trim());
     const part=(r[iPart]||'').trim();
-    if(part){
-      if(!partidosMap[part]) partidosMap[part]={id:part,local:(r[iLoc]||'').trim(),visitante:(r[iVis]||'').trim(),jugado:false};
+    if(!name||!part) continue;
+    // Pronóstico individual de la persona para ese partido
+    const gl=(r[iGL]||'').trim(), gv=(r[iGV]||'').trim();
+    if(gl!==''&&gv!==''&&!isNaN(parseInt(gl))&&!isNaN(parseInt(gv))){
+      if(!pronos[part]) pronos[part]=[];
+      pronos[part].push({nombre:name,local:parseInt(gl),visitante:parseInt(gv)});
     }
+    // Puntos por persona (solo filas con puntaje numérico = partido ya calificado)
     const rawPts=(r[iPts]||'').replace(/[^0-9.\-]/g,'').trim();
     if(rawPts!==''&&!isNaN(parseFloat(rawPts))){
-      if(part&&partidosMap[part]) partidosMap[part].jugado=true;
-      if(name){ puntos[name]=(puntos[name]||0)+parseFloat(rawPts); }
+      calificado[part]=true;
+      puntos[name]=(puntos[name]||0)+parseFloat(rawPts);
     }
   }
-  const partidos=Object.values(partidosMap).sort((a,b)=>a.id.localeCompare(b.id));
-  const jugados=partidos.filter(p=>p.jugado).length;
-  return {puntos,partidos,jugados};
-}
-
-// ── RONDA DE 32: render de la seccion (resumen + tabla) ──────
-function renderR32(){
-  const wrap=document.getElementById('r32Wrap');
-  if(!wrap) return;
-  // ranking por puntos R32 (desc), incluyendo a todos los jugadores actuales
-  const filas=DATA.players.map(p=>({name:p.name,r32:R32.puntos[p.name]||0,total:p.total||0}))
-                          .sort((a,b)=>b.r32-a.r32||b.total-a.total);
-  const lider=filas[0];
-  const algunoConPts=filas.some(f=>f.r32>0);
-  const jug=R32.jugados, tot=R32.totalPartidos;
-  if(!R32.cargado || (!algunoConPts && jug===0)){
-    wrap.innerHTML=`<div class="gdia-grid"><div class="gdia-empty">
-      <div class="gdia-empty-icon">—</div>
-      <div class="gdia-empty-txt">La Ronda de 32 aun no tiene puntos calificados</div>
-    </div></div>`;
-    return;
-  }
-  const resumen=`<div class="gdia-grid" style="margin-bottom:2px;">
-    <div class="gdia-card gdia-main">
-      <div class="gdia-status ${jug<tot?'prelim':'def'}">${jug<tot?'● En curso':'✓ Completa'}</div>
-      <div class="gdia-tag">Lider de la Ronda</div>
-      <div class="gdia-name">${e(lider?lider.name:'—')}</div>
-      <div class="gdia-big">${lider?lider.r32:0}<span> pts</span></div>
-      <div class="gdia-detail">${jug} de ${tot} partidos calificados</div>
-    </div>
-    <div class="gdia-card">
-      <div class="gdia-status def">Suma al total</div>
-      <div class="gdia-tag">Como funciona</div>
-      <div class="gdia-name" style="font-size:clamp(1rem,2.2vw,1.3rem);line-height:1.3;color:#fff;">Estos puntos ya<br>estan sumados al<br>total general</div>
-      <div class="gdia-detail">Marcador exacto +3 · resultado +2</div>
-    </div>
-  </div>`;
-  const tabla=`<div class="lb-editorial" style="margin-top:2px;">
-    <table>
-      <thead><tr><th>#</th><th>Participante</th><th>16avos</th><th>Total</th></tr></thead>
-      <tbody>${filas.map((f,i)=>{
-        const rank=i+1,rC=rank<=3?`rk${rank}`:'rkn',rbC=rank<=3?`rb${rank}`:'rbn';
-        return `<tr>
-          <td><span class="rkbar ${rbC}"></span><span class="rk ${rC}">${rank}</span></td>
-          <td><span class="pn" onclick="openModal('${e(f.name)}')">${e(f.name)}</span></td>
-          <td><span class="pt">${f.r32}</span></td>
-          <td><span class="ph">${f.total}</span></td>
-        </tr>`;
-      }).join('')}</tbody>
-    </table>
-  </div>`;
-  wrap.innerHTML=resumen+tabla;
+  return {puntos,pronos,calificado};
 }
 
 function parseCaptura(csv){
@@ -1896,23 +1859,29 @@ async function loadLiveData(){
     DATA.resultados_grupos=FIXTURE_ORDER_CAPTURA.map(([local,visita])=>liveRes.resultados[`${local}|${visita}`]||null);
     DATA.lastUpdate=liveRes.lastUpdate;
 
-    // ── RONDA DE 32: parsear puntos y SUMARLOS al total general ──
-    // Se hace despues de cargar CLASIFICACION (que ya reseteo cada total),
-    // asi no hay doble conteo entre ciclos de refresco.
+    // ── ELIMINATORIA (16avos+): puntos por partido jugado ──
+    // Se procesa DESPUÉS de CLASIFICACION (que ya reseteó cada total),
+    // así no hay doble conteo entre ciclos de refresco.
+    DATA.players.forEach(p=>{p.r32=0;});
     if(csvR32 && csvR32.trim()){
       const r32=parseCapturaR32(csvR32);
       if(r32){
-        R32.puntos=r32.puntos; R32.partidos=r32.partidos; R32.jugados=r32.jugados; R32.cargado=true;
+        R32.puntos=r32.puntos; R32.cargado=true;
+        // 1) sumar puntos de partidos eliminatoria al total general
         DATA.players.forEach(p=>{
           const add=R32.puntos[p.name]||0;
           p.r32=add;
           p.total=(p.total||0)+add;
         });
+        // 2) alimentar los pronósticos individuales a los partidos de la sección Juegos
+        //    (el resultado oficial ya lo trae parseResultados desde el CSV RESULTADOS)
+        DATA.partidos.forEach(p=>{
+          if(p.r32 && r32.pronos[p.r32]) p.pronosticos=r32.pronos[p.r32];
+        });
       }
     }
   }catch(err){console.warn('Live fetch failed, usando datos estáticos.',err);}
   render();
-  renderR32();
 }
 
 loadLiveData();
